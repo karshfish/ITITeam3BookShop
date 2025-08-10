@@ -81,3 +81,10 @@ body {
     border-color: var(--color-18) !important;
     color: #fff !important;
 }
+.card:hover{
+    box-shadow: var(--color-1) 10px 10px;
+    transition: 1s;
+}
+.card img{
+    height: 300px;
+}
