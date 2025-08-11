@@ -5,17 +5,16 @@ if (Qs) {
     Qs = Qs.split("?")[1].split("=")
     console.log(Qs)
 }
-
-
+let subject = "adventure"
 
 
 
 async function productsJson() {
-    const fetchedProducts = await fetch("https://openlibrary.org/people/mekBot/books/already-read.json", { cache: 'force-cache' })
-    // console.log(fetchedProducts)
+    const fetchedProducts = await fetch(`http://openlibrary.org/subjects/${subject}.json?limit=100`, { cache: 'force-cache' })
+    console.log(fetchedProducts)
     json = await fetchedProducts.json()
-    // console.log(json.results)
-    return json.reading_log_entries;
+    console.log(json)
+    return json.works;
 };
 
 (async function getProducts() {
@@ -48,8 +47,8 @@ async function productsJson() {
 //create a card to a product 
 function addCard(_product, _src) {
     const mainWrapper = document.getElementById("row")
-    let cardWrapper=document.createElement("div");
-    cardWrapper.className=`col-12 col-md-6 col-lg-3 mb-4`;
+    let cardWrapper = document.createElement("div");
+    cardWrapper.className = `col-12 col-md-6 col-lg-3 mb-4`;
     let card = document.createElement("div")
     card.className = "card h-100 "
     let cardHeader = document.createElement("div")
@@ -57,17 +56,40 @@ function addCard(_product, _src) {
     cardHeader.innerHTML = `<img src="${_src}" alt = "Book" class="card-img-top">`
     let cardBody = document.createElement("div")
     cardBody.className = "card-body"
-    let price=((Math.random()*100)).toFixed(2)
-    cardBody.innerHTML = `<p>Author: ${_product.work.author_names[0]}</p>
-    <p>title: ${_product.work.title}</p>
+    let price = ((Math.random() * 100)).toFixed(2)
+    cardBody.innerHTML = `<p>Author: ${_product.authors[0].name}</p>
+    <p>title: ${_product.title}</p>
     <p>Price: ${price}$`;
-    card.setAttribute("data-price",price)
+    card.setAttribute("data-price", price)
     link = document.createElement("a")
-    link.setAttribute("href", `productDetails,html?id=${_product.work.cover_id}&price=${price}`)
+    link.setAttribute("href", `productDetails.html?id=${_product.cover_id}&price=${price}`)
     link.className = "stretched-link"
+    cardFooter = document.createElement("div")
+    cardFooter.className = "card-footer"
+    addToCart = document.createElement("button")
+    addToCart.className = "btn btn-primary"
+    addToCart.textContent="Add to Cart"
+    addToCart.addEventListener("click", function (e) {
+        
+        let cart = JSON.parse(localStorage.getItem('cart')) || []; // Retrieve or initialize cart
+
+        const existingItemIndex = cart.findIndex(item => item.cover_id === _product.cover_id);
+
+        if (existingItemIndex > -1) {
+            // Item already in cart, update quantity
+            cart[existingItemIndex].quantity +=  1;
+        } else {
+            // New item, add to cart
+            cart.push({ ..._product, quantity:  1 });
+        }
+
+        localStorage.setItem('cart', JSON.stringify(cart)); // Save updated cart
+    })
+    cardFooter.appendChild(addToCart);
     card.appendChild(cardHeader);
     card.appendChild(cardBody)
-    card.appendChild(link)
+    // card.appendChild(link);
+    card.appendChild(cardFooter);
     cardWrapper.appendChild(card);
     mainWrapper.appendChild(cardWrapper);
 
@@ -88,7 +110,7 @@ function addPages(_product) {
 }
 function getCover(_product) {
     const key = "id"
-    let value = _product.work.cover_id;
+    let value = _product.cover_id;
     let size = "L";
     let src = `https://covers.openlibrary.org/b/${key}/${value}-${size}.jpg`;
     return src
