@@ -5,16 +5,22 @@ if (Qs) {
     Qs = Qs.split("?")[1].split("=")
     console.log(Qs)
 }
-let subject = "adventure"
+let subject = "horror"
 
 
 
 async function productsJson() {
-    const fetchedProducts = await fetch(`http://openlibrary.org/subjects/${subject}.json?limit=100`, { cache: 'force-cache' })
+    const fetchedProducts = await fetch(`/booksv2.0.json`, { cache: 'force-cache' })
     console.log(fetchedProducts)
     json = await fetchedProducts.json()
     console.log(json)
-    return json.works;
+    let subjected_products=[]
+    for(let i=0;i<json.length;i++){
+        if(json[i].subjects.indexOf(subject)>-1){
+            subjected_products.push({...json[i]})
+        }
+    }
+    return subjected_products;
 };
 
 (async function getProducts() {
@@ -56,7 +62,7 @@ function addCard(_product, _src) {
     cardHeader.innerHTML = `<img src="${_src}" alt = "Book" class="card-img-top">`
     let cardBody = document.createElement("div")
     cardBody.className = "card-body"
-    let price = ((Math.random() * 100)).toFixed(2)
+    let price = _product.price
     cardBody.innerHTML = `<p>Author: ${_product.authors[0].name}</p>
     <p>title: ${_product.title}</p>
     <p>Price: ${price}$`;
@@ -112,6 +118,6 @@ function getCover(_product) {
     const key = "id"
     let value = _product.cover_id;
     let size = "L";
-    let src = `https://covers.openlibrary.org/b/${key}/${value}-${size}.jpg`;
+    let src = `${_product.covers.large}`;
     return src
 }
