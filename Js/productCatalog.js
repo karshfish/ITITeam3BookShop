@@ -5,49 +5,63 @@ if (Qs) {
     Qs = Qs.split("?")[1].split("=")
     console.log(Qs)
 }
-let subject = "horror"
+subjectIndex=Qs.indexOf("catagory")
+let subject = Qs[subjectIndex+1]
+console.log(subject);
 
 
 
-async function productsJson() {
-    const fetchedProducts = await fetch(`/booksv2.0.json`, { cache: 'force-cache' })
-    console.log(fetchedProducts)
-    json = await fetchedProducts.json()
-    console.log(json)
+ function productsJson() {
+    let fetchedProducts = JSON.parse(localStorage.getItem("products"), [])
+    // console.log(fetchedProducts)
     let subjected_products=[]
-    for(let i=0;i<json.length;i++){
-        if(json[i].subjects.indexOf(subject)>-1){
-            subjected_products.push({...json[i]})
+    for(let i=0;i<fetchedProducts.length;i++){
+        if(fetchedProducts[i].subjects.indexOf(subject)>-1){
+            subjected_products.push({...fetchedProducts[i]})
         }
     }
-    return subjected_products;
+    if(subjected_products.length>0){
+        console.log(subjected_products)
+        return subjected_products
+    }
+    else{
+        alert(`There are no ${subject} books availabe right now check our other collection` );
+        return fetchedProducts;
+    }
+        
+        
 };
 
-(async function getProducts() {
-    let products = await productsJson();
-    addPages(products)
-    console.log(products)
-    let page;
+productsJson();
+function getProducts() {
+    let products=productsJson();
+    // addPages(products)
+    // console.log(products)
+    // let page;
+    // let pageIndex=Qs.indexOf("page")
+    // if (Qs && Qs[pageIndex] === "page") {
+    //     page = +Qs[1]
+    //     page--;
 
-    if (Qs && Qs[0] === "page") {
-        page = +Qs[1]
-        page--;
-
-    }
-    else {
-        page = 0
-    }
-    pagination.children[page].className += " active";
-    for (let i = 0; i < 12; i++) {
-        itemNum = i + ((page) * 12);
-        if (products[itemNum]) {
-            let coverSrc = getCover(products[itemNum])
-            addCard(products[itemNum], coverSrc);
+    // }
+    // else {
+    //     page = 0
+    // }
+    // pagination.children[page].className += " active";
+    for (let i = 0; i < products.length; i++) {
+        // itemNum = i + ((page) * 12);
+        try{
+            let coverSrc = getCover(products[i])
+            addCard(products[i], coverSrc);
+        }
+        catch(e){
+            console.log(i+e)
         }
 
     }
 
-})()
+}
+getProducts();
 
 // console.log(products)
 //create a card to a product 
@@ -79,7 +93,7 @@ function addCard(_product, _src) {
         
         let cart = JSON.parse(localStorage.getItem('cart')) || []; // Retrieve or initialize cart
 
-        const existingItemIndex = cart.findIndex(item => item.cover_id === _product.cover_id);
+        const existingItemIndex = cart.findIndex(item => item.title === _product.title);
 
         if (existingItemIndex > -1) {
             // Item already in cart, update quantity
@@ -101,23 +115,28 @@ function addCard(_product, _src) {
 
 
 }
-function addPages(_product) {
-    let pages = Math.ceil(_product.length / 12)
-    for (let i = 1; i <= pages; i++) {
-        let newPage = document.createElement("li")
-        newPage.className = "page-item"
-        pageAnchor = document.createElement("a")
-        pageAnchor.className = "page-link"
-        pageAnchor.setAttribute("href", `productCatalog.html?page=${i}`)
-        pageAnchor.textContent = i;
-        newPage.appendChild(pageAnchor)
-        pagination.appendChild(newPage)
-    }
-}
+// function addPages(_product) {
+//     let pages = Math.ceil(_product.length / 12)
+//     // console.log(pages)
+//     for (let i = 1; i <= pages; i++) {
+//         let newPage = document.createElement("li")
+//         newPage.className = "page-item"
+//         pageAnchor = document.createElement("a")
+//         pageAnchor.className = "page-link"
+//         pageAnchor.setAttribute("href", `productCatalog.html?page=${i}`)
+//         pageAnchor.textContent = i;
+//         newPage.appendChild(pageAnchor)
+//         pagination.appendChild(newPage)
+//     }
+// }
 function getCover(_product) {
-    const key = "id"
-    let value = _product.cover_id;
-    let size = "L";
-    let src = `${_product.covers.large}`;
-    return src
+    let src=_product.covers?.large;
+    // if(_product.covers){
+    //     return src= _product.covers?.large
+    // }
+    // else{
+    //     return 0
+    // }
+    return src;
+      
 }
