@@ -38,7 +38,7 @@ export function addBookToCart(b) {
         } else {
             cart.push({ ...b, quantity: 1 });  // add the new book.
         }
-         total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+         
 
         // save back to the local storage.
         localStorage.setItem('cart', JSON.stringify(cart));
@@ -55,7 +55,7 @@ export function addBookToCart(b) {
 export function setupCartIcon() {
     const cartIcon = document.getElementById('user-cart');
     const cartDropdown = document.getElementById('cart-dropdown');
-
+  
     cartIcon.addEventListener('click', function () {
         const cart = JSON.parse(localStorage.getItem('cart')) || [];
         let html = ``;
@@ -65,7 +65,7 @@ export function setupCartIcon() {
             (cart).forEach(book => {
                 html += `<li class="text-light dropdown-item-text">${book.title} - $${book.price} (x${book.quantity}) </li>`;
             });
-
+            total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
             html += `<li class="text-light dropdown-item-text">Total - ${total} </li>`;
             cartDropdown.innerHTML = html;
         }
