@@ -5,7 +5,7 @@ export async function renderNewArrivals() {
     const row = document.getElementById('new-arrivals-row');
     const limit = 8;
     try{
-        const response = await JSON.parse(localStorage.getItem("products"), [])
+        const response =  JSON.parse(localStorage.getItem("products"), [])
 
          let books = response.slice(0, limit);
          console.log(books)

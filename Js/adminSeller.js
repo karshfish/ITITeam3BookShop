@@ -1,9 +1,9 @@
 // Example users in localStorage
-localStorage.setItem('users', JSON.stringify([
-  { id: 'U001', name: 'John Doe', role: 'buyer', status: 'active' },
-  { id: 'U002', name: 'Mary Smith', role: 'seller', status: 'inactive' },
-  { id: 'U003', name: 'Alex Brown', role: 'buyer', status: 'active' }
-]));
+// localStorage.setItem('users', JSON.stringify([
+//   { id: 'U001', name: 'John Doe', role: 'buyer', status: 'active' },
+//   { id: 'U002', name: 'Mary Smith', role: 'seller', status: 'inactive' },
+//   { id: 'U003', name: 'Alex Brown', role: 'buyer', status: 'active' }
+// ]));
 
 // Example seller requests in localStorage
 localStorage.setItem('sellerRequests', JSON.stringify([
@@ -12,7 +12,7 @@ localStorage.setItem('sellerRequests', JSON.stringify([
 ]));
 // Load users from localStorage
 function getUsers() {
-  return JSON.parse(localStorage.getItem('users')) || [];
+  return JSON.parse(localStorage.getItem('bookstoreUsers')) || [];
 }
 
 // Load seller requests from localStorage

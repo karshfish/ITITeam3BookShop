@@ -5,14 +5,16 @@ import { loadWhyChooseUs } from './components/why.js';
 import { renderNewArrivals } from './components/newArrivals.js';
 import { renderCategories } from './components/categories.js';
 import { setupCartIcon } from './components/handleCart.js';
-
+import { setupAccountIcon } from './components/accountSetupt.js';
 document.addEventListener('DOMContentLoaded', function() {
     setupSearchComponents();
+    setupAccountIcon();
     setupStickyMainNavbar();
     renderCategories();
     renderNewArrivals();
     renderFeatureBooks();
     loadWhyChooseUs();
     setupCartIcon();
+    
 });
 
