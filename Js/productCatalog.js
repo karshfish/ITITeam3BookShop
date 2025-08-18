@@ -40,6 +40,7 @@ setupCartIcon();
 setupAccountIcon();
 // Get query params
 const params = new URLSearchParams(window.location.search);
+console.log(params);
 const subject = params.get("catagory") ?? params.get("category");
 console.log("Subject:", subject);
 
