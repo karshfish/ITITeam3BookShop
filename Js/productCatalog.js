@@ -1,142 +1,128 @@
-let products;
-let Qs = window.location.search;
-const pagination = document.getElementById("pagination")
-if (Qs) {
-    Qs = Qs.split("?")[1].split("=")
-    console.log(Qs)
+import { navbarReady } from "./navbarLoader.js";
+import { setupAccountIcon } from "./components/accountSetupt.js";
+
+// Wait for navbar
+const navbarContainer = await navbarReady;
+const cartBtn = navbarContainer.querySelector("#user-cart");
+console.log("Cart button:", cartBtn);
+function setupCartIcon() {
+  const cartIcon = document.getElementById("user-cart");
+  const cartDropdown = document.getElementById("cart-dropdown");
+
+  // Force dropdown styling from JS
+  cartDropdown.classList.add("bg-dark"); // dark background
+  cartDropdown.classList.add("p-2"); // padding (optional)
+
+  cartIcon.addEventListener("click", function () {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    let html = ``;
+
+    if (cart.length === 0) {
+      html = `<li class="dropdown-item-text text-light">Your cart is empty</li>`;
+    } else {
+      cart.forEach((book) => {
+        html += `<li class="dropdown-item-text text-light">${book.title} - $${book.price} (x${book.quantity})</li>`;
+      });
+
+      const total = cart.reduce(
+        (sum, item) => sum + item.price * item.quantity,
+        0
+      );
+      html += `<li class="dropdown-item-text fw-bold text-light">Total - $${total}</li>`;
+    }
+
+    cartDropdown.innerHTML = html;
+  });
 }
-subjectIndex=Qs.indexOf("catagory")
-let subject = Qs[subjectIndex+1]
-console.log(subject);
 
+setupCartIcon();
 
+setupAccountIcon();
+// Get query params
+const params = new URLSearchParams(window.location.search);
+const subject = params.get("catagory") ?? params.get("category");
+console.log("Subject:", subject);
 
- function productsJson() {
-    let fetchedProducts = JSON.parse(localStorage.getItem("products"), [])
-    // console.log(fetchedProducts)
-    let subjected_products=[]
-    for(let i=0;i<fetchedProducts.length;i++){
-        if(fetchedProducts[i].subjects.indexOf(subject)>-1){
-            subjected_products.push({...fetchedProducts[i]})
-        }
-    }
-    if(subjected_products.length>0){
-        console.log(subjected_products)
-        return subjected_products
-    }
-    else{
-        alert(`There are no ${subject} books availabe right now check our other collection` );
-        return fetchedProducts;
-    }
-        
-        
-};
+// Get products from storage
+function productsJson() {
+  const fetchedProducts = JSON.parse(localStorage.getItem("products") || "[]");
+  if (!subject) return fetchedProducts;
 
-productsJson();
+  const filtered = fetchedProducts.filter(
+    (p) => Array.isArray(p.subjects) && p.subjects.includes(subject)
+  );
+
+  if (filtered.length > 0) return filtered;
+
+  alert(`There are no ${subject} books available right now. Showing all.`);
+  return fetchedProducts;
+}
+
+// Build catalog
 function getProducts() {
-    let products=productsJson();
-    // addPages(products)
-    // console.log(products)
-    // let page;
-    // let pageIndex=Qs.indexOf("page")
-    // if (Qs && Qs[pageIndex] === "page") {
-    //     page = +Qs[1]
-    //     page--;
-
-    // }
-    // else {
-    //     page = 0
-    // }
-    // pagination.children[page].className += " active";
-    for (let i = 0; i < products.length; i++) {
-        // itemNum = i + ((page) * 12);
-        try{
-            let coverSrc = getCover(products[i])
-            addCard(products[i], coverSrc);
-        }
-        catch(e){
-            console.log(i+e)
-        }
-
+  const products = productsJson();
+  for (const product of products) {
+    try {
+      const coverSrc = getCover(product);
+      addCard(product, coverSrc);
+    } catch (e) {
+      console.error("Error with product:", product, e);
     }
-
+  }
 }
 getProducts();
 
-// console.log(products)
-//create a card to a product 
-function addCard(_product, _src) {
-    const mainWrapper = document.getElementById("row")
-    let cardWrapper = document.createElement("div");
-    cardWrapper.className = `col-12 col-md-6 col-lg-3 mb-4`;
-    let card = document.createElement("div")
-    card.className = "card h-100 "
-    let cardHeader = document.createElement("div")
-    cardHeader.className = "card-header"
-    cardHeader.innerHTML = `<img src="${_src}" alt = "Book" class="card-img-top">`
-    let cardBody = document.createElement("div")
-    cardBody.className = "card-body"
-    let price = _product.price
-    cardBody.innerHTML = `<p>Author: ${_product.authors[0].name}</p>
-    <p>title: ${_product.title}</p>
-    <p>Price: ${price}$`;
-    card.setAttribute("data-price", price)
-    link = document.createElement("a")
-    link.setAttribute("href", `productDetails.html?id=${_product.cover_id}&price=${price}`)
-    link.className = "stretched-link"
-    cardFooter = document.createElement("div")
-    cardFooter.className = "card-footer"
-    addToCart = document.createElement("button")
-    addToCart.className = "btn btn-primary"
-    addToCart.textContent="Add to Cart"
-    addToCart.addEventListener("click", function (e) {
-        
-        let cart = JSON.parse(localStorage.getItem('cart')) || []; // Retrieve or initialize cart
-
-        const existingItemIndex = cart.findIndex(item => item.title === _product.title);
-
-        if (existingItemIndex > -1) {
-            // Item already in cart, update quantity
-            cart[existingItemIndex].quantity +=  1;
-        } else {
-            // New item, add to cart
-            cart.push({ ..._product, quantity:  1 });
-        }
-
-        localStorage.setItem('cart', JSON.stringify(cart)); // Save updated cart
-    })
-    cardFooter.appendChild(addToCart);
-    card.appendChild(cardHeader);
-    card.appendChild(cardBody)
-    // card.appendChild(link);
-    card.appendChild(cardFooter);
-    cardWrapper.appendChild(card);
-    mainWrapper.appendChild(cardWrapper);
-
-
+// Helpers
+function getCover(product) {
+  return product.covers?.large ?? "assets/placeholder.png";
 }
-// function addPages(_product) {
-//     let pages = Math.ceil(_product.length / 12)
-//     // console.log(pages)
-//     for (let i = 1; i <= pages; i++) {
-//         let newPage = document.createElement("li")
-//         newPage.className = "page-item"
-//         pageAnchor = document.createElement("a")
-//         pageAnchor.className = "page-link"
-//         pageAnchor.setAttribute("href", `productCatalog.html?page=${i}`)
-//         pageAnchor.textContent = i;
-//         newPage.appendChild(pageAnchor)
-//         pagination.appendChild(newPage)
-//     }
-// }
-function getCover(_product) {
-    let src=_product.covers?.large;
-    // if(_product.covers){
-    //     return src= _product.covers?.large
-    // }
-    // else{
-    //     return 0
-    // }
-    return src;
-      
+
+function addCard(product, src) {
+  const mainWrapper = document.getElementById("row");
+
+  const cardWrapper = document.createElement("div");
+  cardWrapper.className = "col-12 col-md-6 col-lg-3 mb-4";
+
+  const card = document.createElement("div");
+  card.className = "card h-100";
+  card.setAttribute("data-price", product.price);
+
+  const cardHeader = document.createElement("div");
+  cardHeader.className = "card-header";
+  cardHeader.innerHTML = `<img src="${src}" alt="Book" class="card-img-top">`;
+
+  const cardBody = document.createElement("div");
+  cardBody.className = "card-body";
+  cardBody.innerHTML = `
+    <p>Author: ${product.authors?.[0]?.name ?? "Unknown"}</p>
+    <p>Title: ${product.title}</p>
+    <p>Price: ${product.price}$</p>
+  `;
+
+  const link = document.createElement("a");
+  link.href = `productDetails.html?id=${product.cover_id}&price=${product.price}`;
+  link.className = "stretched-link";
+
+  const cardFooter = document.createElement("div");
+  cardFooter.className = "card-footer";
+
+  const addToCart = document.createElement("button");
+  addToCart.className = "btn btn-primary";
+  addToCart.textContent = "Add to Cart";
+  addToCart.addEventListener("click", () => {
+    const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+    const ix = cart.findIndex((item) => item.title === product.title);
+
+    if (ix > -1) cart[ix].quantity += 1;
+    else cart.push({ ...product, quantity: 1 });
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+  });
+
+  cardFooter.appendChild(addToCart);
+  card.appendChild(cardHeader);
+  card.appendChild(cardBody);
+  card.appendChild(cardFooter);
+  cardWrapper.appendChild(card);
+  mainWrapper.appendChild(cardWrapper);
 }
