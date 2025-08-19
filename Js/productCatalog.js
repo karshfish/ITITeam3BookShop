@@ -1,43 +1,15 @@
 import { navbarReady } from "./navbarLoader.js";
 import { setupAccountIcon } from "./components/accountSetupt.js";
+import { setupStickyMainNavbar } from "./components/stickyMainNavbar.js";
+import { renderCategories } from "./components/categories.js";
+import { setupCartIcon } from "./components/handleCart.js";
 
 // Wait for navbar
-const navbarContainer = await navbarReady;
-const cartBtn = navbarContainer.querySelector("#user-cart");
-console.log("Cart button:", cartBtn);
-function setupCartIcon() {
-  const cartIcon = document.getElementById("user-cart");
-  const cartDropdown = document.getElementById("cart-dropdown");
-
-  // Force dropdown styling from JS
-  cartDropdown.classList.add("bg-dark"); // dark background
-  cartDropdown.classList.add("p-2"); // padding (optional)
-
-  cartIcon.addEventListener("click", function () {
-    const cart = JSON.parse(localStorage.getItem("cart")) || [];
-    let html = ``;
-
-    if (cart.length === 0) {
-      html = `<li class="dropdown-item-text text-light">Your cart is empty</li>`;
-    } else {
-      cart.forEach((book) => {
-        html += `<li class="dropdown-item-text text-light">${book.title} - $${book.price} (x${book.quantity})</li>`;
-      });
-
-      const total = cart.reduce(
-        (sum, item) => sum + item.price * item.quantity,
-        0
-      );
-      html += `<li class="dropdown-item-text fw-bold text-light">Total - $${total}</li>`;
-    }
-
-    cartDropdown.innerHTML = html;
-  });
-}
-
-setupCartIcon();
-
+await navbarReady;
+setupStickyMainNavbar();
 setupAccountIcon();
+setupCartIcon();
+renderCategories();
 // Get query params
 const params = new URLSearchParams(window.location.search);
 console.log(params);

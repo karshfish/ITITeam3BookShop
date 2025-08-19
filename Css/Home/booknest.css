@@ -1,43 +1,42 @@
 :root {
-    --color-1: #111111;
-    --color-2: #000000;
-    --color-3: #0A0A0A;
-    --color-4: #222222;
-    --color-5: #333333;
-    --color-6: #E1DFD6;
-    --color-7: #E9E7E0;
-    --color-8: #EDEBE4;
-    --color-9: #EDECE6;
-    --color-10: #E5E5E5;
-    --color-11: #D7D5CC;
-    --color-12: #E0E0E0;
-    --color-13: #E5E3DA;
-    --color-14: #777777;
-    --color-15: #7A7A7A;
-    --color-16: #888888;
-    --color-17: #9F9F9F;
-    --color-18: #74642F;
-    --color-19: #EFEEE8;
-    --color-20: #E5E4DE;
-    --color-21: #C0C0C0;
-    --color-22: #8C8C8C;
-    --color-23: #EAE8DF;
-    --color-24: #9A884C;
-    --color-25: #94928B;
-    --color-26: #ec7e18;
-    --color-27: #FF9C00;
-
+  --color-1: #111111;
+  --color-2: #000000;
+  --color-3: #0a0a0a;
+  --color-4: #222222;
+  --color-5: #333333;
+  --color-6: #e1dfd6;
+  --color-7: #e9e7e0;
+  --color-8: #edebe4;
+  --color-9: #edece6;
+  --color-10: #e5e5e5;
+  --color-11: #d7d5cc;
+  --color-12: #e0e0e0;
+  --color-13: #e5e3da;
+  --color-14: #777777;
+  --color-15: #7a7a7a;
+  --color-16: #888888;
+  --color-17: #9f9f9f;
+  --color-18: #74642f;
+  --color-19: #efeee8;
+  --color-20: #e5e4de;
+  --color-21: #c0c0c0;
+  --color-22: #8c8c8c;
+  --color-23: #eae8df;
+  --color-24: #9a884c;
+  --color-25: #94928b;
+  --color-26: #ec7e18;
+  --color-27: #ff9c00;
 }
 body {
-    background-color: var(--color-9);
-    /* height: 300vh; */
-    overflow-x: hidden;
+  background-color: var(--color-9);
+  /* height: 300vh; */
+  overflow-x: hidden;
 }
 p {
-    color: var(--color-14);
+  color: var(--color-14);
 }
 h1 {
-    color: var(--color-5);
+  color: var(--color-5);
 }
 
 /* ========================== Upper Nav Bar Start ======================== */
@@ -46,98 +45,98 @@ h1 {
 
 /* ========================== Main Nav Bar Start ======================== */
 .main-navbar {
-    transition: all 0.3s ease;
-    z-index: 1030;
+  transition: all 0.3s ease;
+  background: rgba(1, 1, 1, 0.2);
+  backdrop-filter: blur(6px);
+  z-index: 1030;
 }
 .main-navbar.sticky-active {
-    position: fixed;
-    transform: scale(0.6);
-    top: 0;
-    left: 0;
-    right: 0;
-    background: rgba(1, 1, 1, 0.2);
-    backdrop-filter: blur(6px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  position: fixed;
+  transform: scale(0.6);
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgba(1, 1, 1, 0.2);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
 }
 .main-navbar .logo {
-    color: var(--color-10);
+  color: var(--color-10);
 }
 .main-navbar .nav-link.home-link {
-    color: var(--color-24);
-    font-weight: 600;
+  color: var(--color-24);
+  font-weight: 600;
 }
-.main-navbar .nav-link:not(home-link), 
+.main-navbar .nav-link:not(home-link),
 .upper-nav-link {
-    color: var(--color-10);
-    transition: color 0.3s ease;
+  color: var(--color-10);
+  transition: color 0.3s ease;
 }
 .main-navbar .nav-link:not(home-link):hover {
-    color: var(--color-24);
+  color: var(--color-24);
 }
 
 /* dropdown menu overall box */
 .dropdown-menu {
-    border-radius: 10px;
-    padding: 0.5rem 0;
-    margin-top: 8px;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(6px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
-    min-width: 180px;
-    transition: all 0.3s ease-in-out;
+  border-radius: 10px;
+  padding: 0.5rem 0;
+  margin-top: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  min-width: 180px;
+  transition: all 0.3s ease-in-out;
 }
 .dropdown-item {
-    padding: 10px 20px;
-    color: var(--color-10);
-    transition: all 0.2s ease;
-    border-radius: 5px;
+  padding: 10px 20px;
+  color: var(--color-10);
+  transition: all 0.2s ease;
+  border-radius: 5px;
 }
 .dropdown-item:hover {
-    background: rgba(255, 255, 255, 0.2);
-    color: white;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
 }
 /* ========================== Main Nav Bar End ======================== */
 
 /* ========================== Search Component Start ======================== */
 .search-wrapper .search-input {
-    width: 0;
-    padding: 0;
-    opacity: 0;
-    border: none;
-    background-color: transparent;
-    /* border-bottom: 1px solid #ccc; */
-    outline: none;
-    transition: width 0.4s ease, opacity 0.4s ease;
+  width: 0;
+  padding: 0;
+  opacity: 0;
+  border: none;
+  background-color: transparent;
+  /* border-bottom: 1px solid #ccc; */
+  outline: none;
+  transition: width 0.4s ease, opacity 0.4s ease;
 }
 .search-wrapper .search-input:focus {
-    border: none;
-    outline: none;
-    box-shadow: none;
+  border: none;
+  outline: none;
+  box-shadow: none;
 }
 .search-wrapper .search-input.show {
-    width: 250px;
-    opacity: 1;
-    background: rgba(255, 255, 255, 0.4);
-    backdrop-filter: blur(6px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-    padding: 7px 25px;
-    border-radius: 20px;
-    color: whitesmoke;
-    
+  width: 250px;
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  padding: 7px 25px;
+  border-radius: 20px;
+  color: whitesmoke;
 }
 /* ================================= Search Component End =================================== */
 
 /* ================================= Hero Section Start ===================================== */
 .hero-section {
-    height: 100vh;
-    transition: all 0.7s ease-in-out;
-    padding: 60px 0;
-    
+  height: 100vh;
+  transition: all 0.7s ease-in-out;
+  padding: 60px 0;
 }
 .hero-content {
-    margin-top: 60px;
-    position: relative;
-    z-index: 2;
+  margin-top: 60px;
+  position: relative;
+  z-index: 2;
 }
 /* .hero-content-wrapper {
     padding: 40px;
@@ -147,182 +146,180 @@ h1 {
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
 } */
 .hero-title {
-    font-size: 3rem;
-    font-weight: bold;
-    color: var(--color-13);
-    margin-bottom: 20px;
-    font-family: 'Playfair Display', serif;
-    letter-spacing: 1.5px;
-    line-height: 1.5;
-    /* font-size: clamp(2rem, 5vw, 3.5rem); */
+  font-size: 3rem;
+  font-weight: bold;
+  color: var(--color-13);
+  margin-bottom: 20px;
+  font-family: "Playfair Display", serif;
+  letter-spacing: 1.5px;
+  line-height: 1.5;
+  /* font-size: clamp(2rem, 5vw, 3.5rem); */
 }
 .hero-subtitle {
-    font-size: 1.25rem;
-    color: var(--color-13);
-    margin-bottom: 30px;
-    /* font-size: clamp(1rem, 2.5vw, 1.25rem); */
+  font-size: 1.25rem;
+  color: var(--color-13);
+  margin-bottom: 30px;
+  /* font-size: clamp(1rem, 2.5vw, 1.25rem); */
 }
 .hero-btn {
-    color: var(--color-6);
-    padding: 12px 30px;
-    border-radius: 30px;
-    text-decoration: none;
-    font-weight: 500;
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(6px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-    transition: background-color 0.3s ease;
+  color: var(--color-6);
+  padding: 12px 30px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 500;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease;
 }
 .hero-btn:hover {
-    background: rgba(255, 255, 255, 0.2);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
-    transform: scaleY(-15px);
-    color: white;
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  transform: scaleY(-15px);
+  color: white;
 }
 
 .hero-bg-video {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    object-fit: cover;
-    z-index: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: 0;
 }
 .hero-section .container {
-    z-index: 2;
+  z-index: 2;
 }
 
 @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 .hero-section .hero-content {
-    animation: fadeInUp 1.2s ease-out forwards;
+  animation: fadeInUp 1.2s ease-out forwards;
 }
 /* ================================= Hero Section End ===================================== */
 
 /* ================================ New Arrivals Start ====================================== */
 .new-arrivals {
-    padding: 60px 0;
+  padding: 60px 0;
 }
 /* ================================ New Arrivals End ====================================== */
 
 /* ================================ Categories Start ====================================== */
 .featured-categories {
-    padding: 60px 0;
-    /* margin-top: 20vh; */
-    /* background-color: var(--color-9);  */
+  padding: 60px 0;
+  /* margin-top: 20vh; */
+  /* background-color: var(--color-9);  */
 }
 .section-title {
-    font-size: 2rem;
-    font-weight: bold;
-    color: var(--color-1)
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--color-1);
 }
 .category-card {
-    background-color: var(--color-8);
-    transition: all 0.3s ease;
-    cursor: pointer;
-    color: var(--color-4);
-    text-decoration: none;
+  background-color: var(--color-8);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  color: var(--color-4);
+  text-decoration: none;
 }
 .category-card:hover {
-    background-color: var(--color-7);
-    /* border: 1px solid var(--color-12); */
-    transform: translateY(-8px) scale(1.02);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
-    color: var(--color-18);
+  background-color: var(--color-7);
+  /* border: 1px solid var(--color-12); */
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  color: var(--color-18);
 }
 .category-card h5 {
-    font-weight: 600;
-    margin-top: 10px;
-    font-size: 1.1rem;
+  font-weight: 600;
+  margin-top: 10px;
+  font-size: 1.1rem;
 }
 .more-categories {
-    color: var(--color-4);
+  color: var(--color-4);
 }
 /* ================================ Categories End ======================================== */
 /* ================================ Featured Books Start ======================================== */
 .featured-books {
-    padding: 60px 0;
-    /* margin-top: 20vh; */
-    /* background-color: var(--color-9); */
+  padding: 60px 0;
+  /* margin-top: 20vh; */
+  /* background-color: var(--color-9); */
 }
 .book-card {
-    background-color: var(--color-8);
-    transition: all 0.3s ease;
-    cursor: pointer;
-    color: var(--color-4);
-    text-decoration: none;
+  background-color: var(--color-8);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  color: var(--color-4);
+  text-decoration: none;
 }
 .book-card:hover {
-    background-color: var(--color-7);
-    transform: translateY(-8px) scale(1.02);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
-    color: var(--color-18);
+  background-color: var(--color-7);
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  color: var(--color-18);
 }
 .book-img {
-    max-height: 220px;
-    object-fit: cover;
-    border-radius: 6px;
+  max-height: 220px;
+  object-fit: cover;
+  border-radius: 6px;
 }
 .add-btn {
-    background-color: var(--color-24);
-    color: var(--color-13);
-    border: none;
+  background-color: var(--color-24);
+  color: var(--color-13);
+  border: none;
 }
 .add-btn:hover {
-    background-color: #b09b56;
-    color: var(--color-13);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
-
+  background-color: #b09b56;
+  color: var(--color-13);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
 }
 /* ================================ Featured Books End ======================================== */
 /* ================================ Why Us Start ======================================== */
 .why-us {
-    padding: 60px 0;
+  padding: 60px 0;
 }
 .why-card {
-    background-color: var(--color-8);
-    transition: all 0.3s ease;
-    cursor: pointer;
-    color: var(--color-4);
-    text-decoration: none;
+  background-color: var(--color-8);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  color: var(--color-4);
+  text-decoration: none;
 }
 .why-card:hover {
-    background-color: var(--color-7);
-    transform: translateY(-8px) scale(1.02);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
-    color: var(--color-18);
+  background-color: var(--color-7);
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  color: var(--color-18);
 }
 .why-icon {
-    color: var(--color-4);
+  color: var(--color-4);
 }
 /* ================================ Why Us End ======================================== */
 
 /* ================================ Footer Start ======================================== */
 .footer h5 {
-    color: var(--color-13);
+  color: var(--color-13);
 }
-.footer ul li a, 
+.footer ul li a,
 .footer p {
-    color: var(--color-16);
+  color: var(--color-16);
 }
 .footer .social-icons a {
-    font-size: 1.2rem;
-    transition: all 0.3s ease;
-    color: var(--color-16);
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+  color: var(--color-16);
 }
-.footer .social-icons a:hover, 
+.footer .social-icons a:hover,
 .footer ul li a:hover {
-    color: var(--color-13);
-    transform: scale(1.02);
+  color: var(--color-13);
+  transform: scale(1.02);
 }
 /* ================================ Footer End ======================================== */
-
