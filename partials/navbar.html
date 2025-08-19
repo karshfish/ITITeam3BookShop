@@ -75,14 +75,17 @@
           ></ul>
         </div>
         <!-- account -->
-        <a
+        <button
           href="#"
-          class="nav-link d-flex align-items-center gap-1"
+          class="nav-link d-flex align-items-center gap-1 dropdown-toggle"
           data-bs-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
         >
           <i class="fa-regular fa-user"></i>
           <span id="user-account">Account</span>
-        </a>
+        </button>
+        <div class="dropdown-menu" id="dropdown-menu"></div>
       </div>
     </div>
 
