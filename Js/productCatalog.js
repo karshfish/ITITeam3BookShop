@@ -100,9 +100,9 @@ function addCard(product, src) {
     <p>Price: ${product.price}$</p>
   `;
 
-  const link = document.createElement("a");
-  link.href = `productDetails.html?id=${product.cover_id}&price=${product.price}`;
-  link.className = "stretched-link";
+  card.addEventListener("dblclick", function (e) {
+    window.location.href = `productDetails.html?title=${product.title}`;
+  });
 
   const cardFooter = document.createElement("div");
   cardFooter.className = "card-footer";
