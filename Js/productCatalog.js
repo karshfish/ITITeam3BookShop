@@ -57,7 +57,7 @@ function addCard(product, src) {
   cardWrapper.className = "col-12 col-md-6 col-lg-3 mb-4";
 
   const card = document.createElement("div");
-  card.className = "card h-100";
+  card.className = "card h-100 elegant-card";
   card.setAttribute("data-price", product.price);
 
   const cardHeader = document.createElement("div");
@@ -77,10 +77,10 @@ function addCard(product, src) {
   });
 
   const cardFooter = document.createElement("div");
-  cardFooter.className = "card-footer";
+  cardFooter.className = "card-footer d-flex flex-row justify-content-center align-items-center";
 
   const addToCart = document.createElement("button");
-  addToCart.className = "btn btn-primary";
+  addToCart.className = "btn";
   addToCart.textContent = "Add to Cart";
   addToCart.addEventListener("click", () => {
     const cart = JSON.parse(localStorage.getItem("cart") || "[]");

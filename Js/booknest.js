@@ -7,12 +7,12 @@ import { setupCartIcon } from "./components/handleCart.js";
 import { setupAccountIcon } from "./components/accountSetupt.js";
 import { navbarReady } from "./navbarLoader.js";
 // Wait for navbar
+renderNewArrivals();
+renderFeatureBooks();
+loadWhyChooseUs();
 await navbarReady;
 setupStickyMainNavbar();
 setupAccountIcon();
 setupCartIcon();
 renderCategories();
-renderNewArrivals();
-renderFeatureBooks();
-loadWhyChooseUs();
 setupCartIcon();

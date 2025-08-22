@@ -229,7 +229,7 @@ h1 {
   left: calc(50% - 100px);
   transform-style: preserve-3d;
   transform: perspective(1000px);
-  animation: autoRun 20s linear infinite;
+  animation: autoRun 50s linear infinite;
   transition: transform 2s;
   z-index: 2;
 }

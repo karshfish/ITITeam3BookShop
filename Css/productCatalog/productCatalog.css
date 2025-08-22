@@ -42,48 +42,82 @@ body {
   background-color: var(--color-19);
 }
 
-.hoverLi {
-  background-color: aliceblue;
-}
 
-.hoverLi:hover {
-  background-color: brown;
-}
-
-.pagination {
-  display: inline-flex;
-}
-
-.page-item {
-  margin: 0.1%;
-}
-
-.pagination li a.page-link,
-.pagination li:first-child a.page-link,
-.pagination li:last-child a.page-link {
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  background-color: var(--color-18);
-  padding: 0%;
-  color: var(--color-12);
-}
-
-.page-item.active .page-link {
-  background-color: var(--color-1) !important;
-  border-color: var(--color-18) !important;
-  color: #fff !important;
-}
-.card:hover {
-  box-shadow: var(--color-1) 10px 10px;
-  transition: 1s;
-}
 .card img {
   height: 300px;
 }
 .navbar {
   background-color: var(--color-6);
 }
+.elegant-card {
+  border: none;
+  border-radius: 16px;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.6);   /* dark semi-transparent */
+  backdrop-filter: blur(6px);       /* frosted effect */
+  -webkit-backdrop-filter: blur(6px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s, box-shadow 0.3s;
+  color: #fff; /* default text color for readability */
+}
+
+.elegant-card {
+  border: none;
+  border-radius: 16px;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.3);   /* lighter semi-transparent */
+  backdrop-filter: blur(8px);        /* frosted glass effect */
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+  transition: transform 0.3s, box-shadow 0.3s;
+  color: #fff; /* default text color */
+}
+
+.elegant-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+}
+
+.elegant-card img {
+  transition: transform 0.5s;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.elegant-card:hover img {
+  transform: scale(1.05);
+}
+
+.elegant-card .card-body {
+  padding: 1rem 1.2rem;
+}
+
+.elegant-card .card-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.elegant-card .card-text {
+  font-size: 0.9rem;
+  color: #eee;
+}
+
+.elegant-card .btn {
+  background: #4a60d3;
+  color: #fff;
+  border-radius: 10px;
+  font-weight: 500;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.elegant-card .btn:hover {
+  background: #3a4fb0;
+  transform: scale(1.05);
+}
+
+
+
+
