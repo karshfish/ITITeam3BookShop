@@ -93,17 +93,17 @@ async function handleRegister() {
             showMessage("regError", "Please fill all fields", false);
             return;
         }
-        
+
         if (!validateName(name)) {
             showMessage("regError", "Name must be at least 3 characters", false);
             return;
         }
-        
+
         if (!validateEmail(email)) {
             showMessage("regError", "Invalid email address", false);
             return;
         }
-        
+
         if (!validatePassword(password)) {
             showMessage("regError", "Password must contain uppercase, lowercase, number and special character", false);
             return;
@@ -111,7 +111,7 @@ async function handleRegister() {
 
         const admins = JSON.parse(localStorage.getItem("bookstoreAdmins")) || [];
         const users = JSON.parse(localStorage.getItem("bookstoreUsers")) || [];
-        
+
         if (admins.some(admin => admin.email === email) || users.some(user => user.email === email)) {
             showMessage("regError", "Email already exists", false);
             return;
@@ -127,11 +127,11 @@ async function handleRegister() {
             status: role === "seller" ? "pending" : "active",
             createdAt: new Date().toISOString()
         };
-        
+
         users.push(newUser);
         localStorage.setItem("bookstoreUsers", JSON.stringify(users)); //set user data
         showMessage("regSuccess", "Account created successfully!", true);
-        
+
         document.getElementById("regName").value = "";
         document.getElementById("regEmail").value = "";
         document.getElementById("regPassword").value = "";
@@ -151,7 +151,7 @@ async function handleLogin() {
             showMessage("loginError", "Please fill all fields", false);
             return;
         }
-        
+
         if (!validateEmail(email)) {
             showMessage("loginError", "Invalid email address", false);
             return;
@@ -160,7 +160,7 @@ async function handleLogin() {
         const hashedPassword = encryptPassword(password);
         const admins = JSON.parse(localStorage.getItem("bookstoreAdmins")) || [];
         const users = JSON.parse(localStorage.getItem("bookstoreUsers")) || [];
-        
+
         const foundAdmin = admins.find(admin => admin.email === email && admin.password === hashedPassword);
         if (foundAdmin) {
             const storage = localStorage;
@@ -176,10 +176,19 @@ async function handleLogin() {
                 return;
             }
 
-            const storage = localStorage ;
+            const storage = localStorage;
             storage.setItem("currentUser", JSON.stringify(foundUser)); //set current user
-            
-            const redirectPage = foundUser.role === "seller" ? "seller_dashboard/seller_dashboard-2.html" : "home.html";
+
+            let redirectPage = "home.html"; // default
+
+            if (foundUser.role === "seller" && foundUser.status === "active") {
+                redirectPage = "seller_dashboard/seller_dashboard-2.html";
+            } else if (foundUser.role === "user" && foundUser.status === "active") {
+                redirectPage = "home.html"; // 👈 redirect active users here too
+            } else if (foundUser.role === "admin") {
+                redirectPage = "adminPanel/html/noti.html";
+            }
+
             window.location.href = redirectPage;
         } else {
             showMessage("loginError", "Invalid email or password", false);
@@ -250,7 +259,7 @@ function handleResetPassword() {
 }
 
 
-window.addEventListener('DOMContentLoaded', function() {
+window.addEventListener('DOMContentLoaded', function () {
     imageSlider.style.backgroundImage = `url(${libraryImages[currentImageIndex]})`;
     setRandomQuotes();
     setInterval(changeImage, 5000);
@@ -319,7 +328,7 @@ function createStaticAdmin() {
 // ننده الفانكشن دي أول ما الصفحة تفتح
 (function createStaticAdmin() {
     const admins = JSON.parse(localStorage.getItem("bookstoreAdmins")) || [];
-if (admins.length === 0) {
+    if (admins.length === 0) {
         const plainPassword = "Admin@123"; // الباسورد العادي
         const hashedPassword = CryptoJS.SHA256(plainPassword).toString(); // هاش
 

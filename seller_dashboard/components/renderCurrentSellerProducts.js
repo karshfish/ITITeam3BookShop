@@ -1,12 +1,12 @@
 import {read, write, findById, saveOrUpdate, removeById} from './storage.js';
 
 export function renderProducts() {
-    const current = JSON.parse(localStorage.getItem('currentUser') || '')[0];
-    // console.log('current user data: ', current);
-    if(!current || current.role !== 'seller') return location.href = '../../index.html';
+    const current = JSON.parse(localStorage.getItem('currentUser') || '');
+    console.log('current user data: ', current);
+    // if(!current || current.role !== 'seller') return location.href = '../../index.html';
     
 
-    const products = read('products').filter(p => p.sellerId === current.id);
+    const products = read('products').filter(p => p?.sellerId === current.id);
     // console.log('all products of the current seller: ', products);
 
     const container = document.getElementById('products-table-container');
@@ -33,9 +33,9 @@ export function renderProducts() {
     products.forEach(p => {
         html += `
         <tr data-id="${p.id}">
-            <td><img src="${p.image}" style="height:60px; width:42px" /></td>
+            <td><img src="${p.covers.small}" style="height:60px; width:42px" /></td>
             <td>${p.title} <br> <small>${p.author || ''}</small></td>
-            <td>$${p.price.toFixed(2)}</td>
+            <td>$${p.price}</td>
             <td>${p.stock}</td>
             <td>
                 <button class="btn btn-sm btn-secondary edit-btn">Edit</button>

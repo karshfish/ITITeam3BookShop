@@ -206,7 +206,6 @@ function renderProducts(list) {
         tableRow.innerHTML = `
             <td class="id">${title}</td>
             <td class="title">${title}</td>
-            
             <td class="price">$${price}</td>
             <td class="status">
                 <span class="badge bg-${statusColor(status)} text-capitalize">${status}</span>

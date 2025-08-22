@@ -3,6 +3,7 @@ import { generateUniqueId } from "./uniqueIdGenerator.js";
 
 export function addProduct() {
     const addBtn = document.getElementById('add-product-button')
+    console.log(addBtn)
     addBtn.addEventListener('click', () => {
         
         populateProductModal({
