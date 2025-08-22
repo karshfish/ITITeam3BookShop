@@ -1,12 +1,16 @@
 // Load users from localStorage
 function getUsers() {
-  return JSON.parse(localStorage.getItem('bookstoreUsers')) || [];
-  
+  const users = JSON.parse(localStorage.getItem('bookstoreUsers')) || [];
+  return users.filter(user => user.status === "active" || user.status === "inactive");
 }
+
 
 // Load seller requests from localStorage
 function getSellerRequests() {
-  return JSON.parse(localStorage.getItem('sellerRequests')) || [];
+  let users = JSON.parse(localStorage.getItem('bookstoreUsers')) || [];
+  let pendingUsers = users.filter(user => user.status === "pending");
+
+  return pendingUsers.length > 0 ? pendingUsers : [];
 }
 
 // Render Users Table
@@ -74,29 +78,35 @@ function bindUserEvents() {
 }
 
 // Approve Seller
+// Approve Seller
 function bindApprovalEvents() {
   document.querySelectorAll('.approve-seller').forEach(btn => {
     btn.addEventListener('click', function () {
       const row = this.closest('tr');
       const userId = row.querySelector('td').textContent;
-      let users = getUsers();
-      let requests = getSellerRequests();
 
-      // Find request
-      let req = requests.find(r => r.id === userId);
-      if (req) {
-        // Update in users list
-        users.push({ id: req.id, name: req.name, role: 'seller', status: 'active' });
-        // Remove from requests
-        requests = requests.filter(r => r.id !== userId);
-        localStorage.setItem('bookstoreUsers', JSON.stringify(users));
-        localStorage.setItem('sellerRequests', JSON.stringify(requests));
+      // Get all users (active, inactive, pending, etc.)
+      let allUsers = JSON.parse(localStorage.getItem('bookstoreUsers')) || [];
+
+      // Find the request in allUsers
+      let reqIndex = allUsers.findIndex(u => u.id == userId && u.status === "pending");
+
+      if (reqIndex !== -1) {
+        // Update request → active seller
+        allUsers[reqIndex].role = "seller";
+        allUsers[reqIndex].status = "active";
+
+        // Save back to localStorage
+        localStorage.setItem('bookstoreUsers', JSON.stringify(allUsers));
+
+        // Re-render tables
         renderUsersTable();
         renderSellerRequests();
       }
     });
   });
 }
+
 
 // Utility: Capitalize first letter
 function capitalize(str) {

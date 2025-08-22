@@ -1,7 +1,7 @@
 import { requireAdmin } from "./auth.js";
 import { read, write, findById, saveOrUpdate, removeById } from "./storage.js";
 
-window.addEventListener('DOMContentLoaded', function() {
+window.addEventListener('DOMContentLoaded', function () {
     requireAdmin();
     loadProducts();
     applyFilters();
@@ -13,11 +13,11 @@ window.addEventListener('DOMContentLoaded', function() {
 function showProductDetails() {
     const tableBody = document.getElementById('products-body');
 
-    tableBody.addEventListener('click', function(event) {
+    tableBody.addEventListener('click', function (event) {
         const row = event.target.closest('tr');
-        if(!row) return;
+        if (!row) return;
 
-        if(event.target.closest('button')) return;
+        if (event.target.closest('button')) return;
 
         const productId = row.dataset.id;
         const product = findById('products', productId);
@@ -40,18 +40,18 @@ function showProductDetails() {
         populateFooter(modal, modalFooter, product);
 
         modal.show();
-        
+
     });
 
 }
 
-function populateBody(modal, modalBody, product, seller){
+function populateBody(modal, modalBody, product, seller) {
     const cover = '../images/book1.jpg';
     const title = 'cloud mountain';
     const author = 'George MacDonald';
     const price = '$10';
     const description = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia sed, deserunt qui ad error natus velit praesentium dolorem accusantium expedita laborum alias ab est excepturi molestiae sit sequi autem. Expedita!';
-    
+
     modalBody.innerHTML = `
     <div class="d-flex flex-column flex-md-row align-items-center">
     <!-- Book cover -->
@@ -74,16 +74,16 @@ function populateBody(modal, modalBody, product, seller){
 }
 
 function populateFooter(modal, footer, product) {
-    if(product.status === 'pending') {
+    if (product.status === 'pending') {
         const approveBtn = createButton('Approve', 'btn btn-success btn-sm approve-btn');
-        approveBtn.addEventListener('click', function() {
+        approveBtn.addEventListener('click', function () {
             changeStatus(product.id, 'approved');
             modal.hide();
         });
         footer.appendChild(approveBtn);
 
         const rejectBtn = createButton('Reject', 'btn btn-warning btn-sm reject-btn');
-        rejectBtn.addEventListener('click', function() {
+        rejectBtn.addEventListener('click', function () {
             changeStatus(product.id, 'rejected');
             modal.hide();
         });
@@ -91,9 +91,9 @@ function populateFooter(modal, footer, product) {
     }
 
     const deleteBtn = createButton('Delete', 'btn btn-danger btn-sm delete-btn');
-    deleteBtn.addEventListener('click', function() {
-            deleteProduct(product.id);
-            modal.hide();
+    deleteBtn.addEventListener('click', function () {
+        deleteProduct(product.id);
+        modal.hide();
     });
     footer.appendChild(deleteBtn);
 
@@ -103,29 +103,29 @@ function populateFooter(modal, footer, product) {
 
 }
 
-function createButton(content, className, attr=[]){
+function createButton(content, className, attr = []) {
     const btn = document.createElement('button');
     btn.className = className;
-    if(attr.length > 0) btn.setAttribute(attr[0], attr[1]);
+    if (attr.length > 0) btn.setAttribute(attr[0], attr[1]);
     btn.textContent = content;
     return btn;
 }
 
 function applyTableActions() {
     const tableBody = document.getElementById('products-body');
-    tableBody.addEventListener('click', function(event) {
+    tableBody.addEventListener('click', function (event) {
         const target = event.target;
         const row = target.closest('tr');
-        if(!row) return;
+        if (!row) return;
 
         const productId = row.dataset.id;
         // console.log(productId);
 
-        if(target.classList.contains('approve-btn')) {
+        if (target.classList.contains('approve-btn')) {
             changeStatus(productId, 'approved');
-        } else if(target.classList.contains('reject-btn')) {
+        } else if (target.classList.contains('reject-btn')) {
             changeStatus(productId, 'rejected');
-        } else if(target.classList.contains('delete-btn')) {
+        } else if (target.classList.contains('delete-btn')) {
             deleteProduct(productId);
         }
 
@@ -143,18 +143,18 @@ function applyFilters() {
 }
 
 function deleteProduct(id) {
-    if(!confirm(`Delete this product permanently`)) return;
+    if (!confirm(`Delete this product permanently`)) return;
 
     removeById('products', id);
     filterProducts();
 }
 
 function changeStatus(id, newStatus) {
-    if(!confirm(`Are you sure you want to mark this products as ${newStatus}?`)) return;
+    if (!confirm(`Are you sure you want to mark this products as ${newStatus}?`)) return;
 
     let products = read('products');
     const index = products.findIndex(p => p.id === id);
-    if(index !== -1) {
+    if (index !== -1) {
         products[index].status = newStatus;
     }
     write('products', products);
@@ -167,10 +167,10 @@ function filterProducts() {
 
     let products = read('products'); // => [{}, {}, ...]
 
-    if(filter !== 'all') {
+    if (filter !== 'all') {
         products = products.filter(p => p.status === filter);
     }
-    if(searchedTitle) {
+    if (searchedTitle) {
         products = products.filter(p => p.title.toLowerCase().includes(searchedTitle));
     }
 
@@ -178,10 +178,10 @@ function filterProducts() {
 }
 
 function statusColor(st) {
-    switch(st) {
-        case 'pending' : return 'secondary';
-        case 'approved' : return 'success';
-        case 'rejected' : return 'danger';
+    switch (st) {
+        case 'pending': return 'secondary';
+        case 'approved': return 'success';
+        case 'rejected': return 'danger';
         default: return 'light';
     }
 }
@@ -190,17 +190,17 @@ function renderProducts(list) {
     const tbody = document.getElementById('products-body');
     tbody.innerHTML = '';
 
-    
+
     list.forEach(product => {
         const tableRow = document.createElement('tr');
-        
+
         const id = product.id;
         const title = product.title;
         const sellerId = product.sellerId;
         const sellerName = findById('users', sellerId).name;
         const price = product.price.toFixed(2);
         const status = product.status;
-        
+
         tableRow.dataset.id = id;
 
         tableRow.innerHTML = `
@@ -227,7 +227,7 @@ function renderProducts(list) {
 }
 
 function loadProducts() {
-    const products = read('products');
+    const products = JSON.parse(localStorage.getItem("products") || []);
     renderProducts(products);
     // filterProducts();
 }

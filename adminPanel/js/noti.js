@@ -392,7 +392,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Initialize page
     const initializePage = () => {
-        initializeSampleData();
+        // initializeSampleData();
         initializeCharts();
         updateDashboardWithLocalData();
     };
@@ -406,7 +406,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Expose helpers for debugging
     window.DASH = {
-        seed: initializeSampleData,
+        // seed: initializeSampleData,
         refresh: updateDashboardWithLocalData,
         fetchData: fetchLocalData
     };
@@ -414,4 +414,3 @@ document.addEventListener("DOMContentLoaded", () => {
     // Run initialization
     initializePage();
 });  // ✅ هنا القوس الناقص
-sidebar-footer
