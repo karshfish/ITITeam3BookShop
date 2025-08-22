@@ -1,11 +1,12 @@
 seedUsers = [
     {
         "id": "u_seller_1",
-        "name": "Ali Seller",
+        "name": "xxxx Seller",
         "email": "ali@example.com",
         "role": "seller",
         "passwordHash": "...", 
         "storeName": "AliBooks",
+        "profileImage": "../images/book1.jpg"
     }, 
 
 ];
@@ -22,6 +23,7 @@ seedProducts = [
         "image": "../images/book1.jpg",
         "description": "Great JS book",
         "visible": true,
+        "status": 'pending', 
         "createdAt": "2025-08-10T12:34:00Z"
     },
     {
@@ -35,6 +37,7 @@ seedProducts = [
         "image": "../images/book2.jpg",
         "description": "Great JS book",
         "visible": true,
+        "status": 'pending',
         "createdAt": "2025-08-11T12:34:00Z"
     },
     {
@@ -48,6 +51,7 @@ seedProducts = [
         "image": "../images/book3.jpg",
         "description": "Great JS book",
         "visible": true,
+        "status": 'pending',
         "createdAt": "2025-08-12T12:34:00Z"
     },
     {
@@ -61,6 +65,7 @@ seedProducts = [
         "image": "../images/book4.jpg",
         "description": "Great JS book",
         "visible": true,
+        "status": 'pending',
         "createdAt": "2025-08-13T12:34:00Z"
     }
 ];
@@ -83,7 +88,8 @@ seedCurrentUser = [
     {
         "id":"u_seller_1",
         "role":"seller",
-        "name":"Ali Seller"
+        "name":"Seller",
+        "profileImage": "../images/book1.jpg"
     }
 ];
 

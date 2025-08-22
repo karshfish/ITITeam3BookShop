@@ -1,3 +1,4 @@
+
 const libraryImages = [
     "https://images.unsplash.com/photo-1615324606662-5d6d2ae148f0?q=80&w=1074&auto=format&fit=crop",
     "https://images.unsplash.com/photo-1660188100834-66898d065661?w=600&auto=format&fit=crop&q=60",
@@ -178,7 +179,7 @@ async function handleLogin() {
             const storage = localStorage ;
             storage.setItem("currentUser", JSON.stringify(foundUser)); //set current user
             
-            const redirectPage = foundUser.role === "seller" ? "seller_dashboard.html" : "home.html";
+            const redirectPage = foundUser.role === "seller" ? "seller_dashboard/seller_dashboard-2.html" : "home.html";
             window.location.href = redirectPage;
         } else {
             showMessage("loginError", "Invalid email or password", false);
@@ -260,7 +261,7 @@ window.addEventListener('DOMContentLoaded', function() {
         if (savedUser.role === "admin") {
             redirectPage = "#";
         } else if (savedUser.role === "seller") {
-            redirectPage = savedUser.status === "pending" ? "pending_approval.html" : "home.html";
+            redirectPage = savedUser.status === "pending" ? "pending_approval.html" : "seller_dashboard/seller_dashboard-2.html";
         }
         window.location.href = redirectPage;
     }

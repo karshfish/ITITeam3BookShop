@@ -1,5 +1,3 @@
-import { generateUniqueId } from "../../seller-dashboard/components/uniqueIdGenerator.js";
-import { read } from "../../seller-dashboard/components/storage.js";
 let total;
 export function addBookToCart(b) {
   // const current = JSON.parse(localStorage.getItem('currentUser'))[0] || '';

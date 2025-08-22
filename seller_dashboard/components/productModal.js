@@ -71,6 +71,7 @@ function onSubmit(e) {
         image: getVal('prod-image').trim(), 
         description: getVal('prod-desc').trim(), 
         visible: document.getElementById('prod-visible').checked, 
+        status: 'pending', 
         createdAt: existing?.createdAt || new Date().toISOString()
     };
 

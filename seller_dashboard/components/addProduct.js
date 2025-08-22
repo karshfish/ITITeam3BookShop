@@ -16,6 +16,7 @@ export function addProduct() {
             image: '',
             description: '',
             visible: true,
+            status: 'pending', 
             createdAt: new Date().toISOString()
         });
         showProductModal();
