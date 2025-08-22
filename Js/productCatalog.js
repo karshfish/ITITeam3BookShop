@@ -36,8 +36,9 @@ function getProducts() {
   const products = productsJson();
   for (const product of products) {
     try {
+      if(product.active==2){
       const coverSrc = getCover(product);
-      addCard(product, coverSrc);
+      addCard(product, coverSrc);}
     } catch (e) {
       console.error("Error with product:", product, e);
     }
