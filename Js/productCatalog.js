@@ -73,7 +73,7 @@ function addCard(product, src) {
   `;
 
   card.addEventListener("dblclick", function (e) {
-    window.location.href = `productDetails.html?title=${product.title}`;
+    window.location.href = `product-details.html?title=${product.title}`;
   });
 
   const cardFooter = document.createElement("div");

@@ -6,10 +6,7 @@
 // ]));
 
 // Example seller requests in localStorage
-localStorage.setItem('sellerRequests', JSON.stringify([
-  { id: 'U004', name: 'Sarah Lee', role: 'buyer' },
-  { id: 'U005', name: 'Mike Johnson', role: 'buyer' }
-]));
+
 // Load users from localStorage
 function getUsers() {
   return JSON.parse(localStorage.getItem('bookstoreUsers')) || [];
@@ -31,7 +28,7 @@ function renderUsersTable() {
     tr.setAttribute('data-role', user.role);
     tr.innerHTML = `
       <td>${user.id}</td>
-      <td>${user.name}</td>
+      <td>${user.fullName}</td>
       <td>${capitalize(user.role)}</td>
       <td class="${user.status === 'active' ? 'status-active' : 'status-inactive'}">${capitalize(user.status)}</td>
       <td class="text-center">
@@ -52,7 +49,7 @@ function renderSellerRequests() {
   getSellerRequests().forEach(req => {
     const tr = document.createElement('tr');
     tr.innerHTML = `
-      <td>${req.id}</td>
+      <td id ="ID">${req.id}</td>
       <td>${req.name}</td>
       <td>${capitalize(req.role)}</td>
       <td class="text-center">
@@ -69,11 +66,15 @@ function bindUserEvents() {
   document.querySelectorAll('.toggle-status').forEach(btn => {
     btn.addEventListener('click', function () {
       const row = this.closest('tr');
+      console.log(row)
       const userId = row.querySelector('td').textContent;
+      console.log(userId)
       let users = getUsers();
-      let user = users.find(u => u.id === userId);
+      console.log(users)
+      let user = users.find(u => u.id === +userId);
+      console.log(user)
       user.status = (user.status === 'active') ? 'inactive' : 'active';
-      localStorage.setItem('users', JSON.stringify(users));
+      localStorage.setItem('bookstoreUsers', JSON.stringify(users));
       renderUsersTable();
     });
   });
@@ -95,7 +96,7 @@ function bindApprovalEvents() {
         users.push({ id: req.id, name: req.name, role: 'seller', status: 'active' });
         // Remove from requests
         requests = requests.filter(r => r.id !== userId);
-        localStorage.setItem('users', JSON.stringify(users));
+        localStorage.setItem('bookstoreUsers', JSON.stringify(users));
         localStorage.setItem('sellerRequests', JSON.stringify(requests));
         renderUsersTable();
         renderSellerRequests();

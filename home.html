@@ -37,7 +37,7 @@
             <p class="hero-subtitle lead">
               Explore thousands of titles from top authors in every genre.
             </p>
-            <a href="#" class="hero-btn px-4 py-2">Start Shopping</a>
+            <a href="productCatalog.html" class="hero-btn px-4 py-2">Start Shopping</a>
           </div>
         </div>
       </div>
@@ -49,36 +49,31 @@
     <!-- =============================== Categories Start ============================================= -->
     <section class="featured-categories">
       <div class="container text-center">
-        <h2 class="section-title mb-4">Featured Categories</h2>
-        <div class="row" id="categories-row">
-          <!-- category cards here -->
-          <!-- <div class="col-12 col-md-6 col-lg-3 mb-4">
-                    <a href="#" class="category-card p-4 shadow-sm rounded text-center h-100 d-block" role="button" aria-label="Browse Fiction books">
-                        <div class="category-icon mb-3 fs-1">📘</div>
-                        <h5 class="category-name">Fiction</h5>
-                    </a>
-                </div>
-                <div class="col-12 col-md-6 col-lg-3 mb-4">
-                    <a href="#" class="category-card p-4 shadow-sm rounded text-center h-100 d-block" role="button" aria-label="Browse Non-Fiction books">
-                        <div class="category-icon mb-3 fs-1">📖</div>
-                        <h5 class="category-name">Non-Fiction</h5>
-                    </a>
-                </div>
-                <div class="col-12 col-md-6 col-lg-3 mb-4">
-                    <a href="#" class="category-card p-4 shadow-sm rounded text-center h-100 d-block" role="button" aria-label="Browse Sci-Fi books">
-                        <div class="category-icon mb-3 fs-1">🚀</div>
-                        <h5 class="category-name">Sci-Fi</h5>
-                    </a>
-                </div>
-                <div class="col-12 col-md-6 col-lg-3 mb-4">
-                    <a href="#" class="category-card p-4 shadow-sm rounded text-center h-100 d-block" role="button" aria-label="Browse Classics books">
-                        <div class="category-icon mb-3 fs-1">📚</div>
-                        <h5 class="category-name">Classics</h5>
-                    </a>
-                </div> -->
+        <h2 class="cat-title section-title mb-4 text-light">Featured Categories</h2>
+        <!-- <div class="cat-slider" style="--cat-width: 200px; --cat-height: 50px; --cat-quantity: 10;">
+          <div class="cat-list d-flex align-items-center justify-content-around">
+            <div class="cat-item" style="--cat-position: 1"><i class="fa-solid fa-book-open"></i></i><p>Fiction</p></div>
+            <div class="cat-item" style="--cat-position: 2"><i class="fa-solid fa-book"></i><p>Non-Fiction</p></div>
+            <div class="cat-item" style="--cat-position: 3"><i class="fa-solid fa-user-secret"></i><p>Mystery & Thriller</p></div>
+            <div class="cat-item" style="--cat-position: 4"><i class="fa-solid fa-rocket"></i><p>Science Fiction & Fantasy</p></div>
+            <div class="cat-item" style="--cat-position: 5"><i class="fa-solid fa-heart"></i><p>Romance</p></div>
+            <div class="cat-item" style="--cat-position: 6"><i class="fa-solid fa-user"></i><p>Biographies & Memoirs</p></div>
+            <div class="cat-item" style="--cat-position: 7"><i class="fa-solid fa-seedling"></i><p>Self-Help & Personal Dev.</p></div>
+            <div class="cat-item" style="--cat-position: 8"><i class="fa-solid fa-children"></i><p>Children's Books</p></div>
+            <div class="cat-item" style="--cat-position: 9"><i class="fa-solid fa-landmark-dome"></i><p>History</p></div>
+            <div class="cat-item" style="--cat-position: 10"><i class="fa-solid fa-graduation-cap"></i><p>Educational & Academic</p></div>          
+          </div>
+        </div> -->
+
+        <div class="cat-slider" style="
+        --cat-width:200px;
+        --cat-height:100px;
+        --cat-quantity: 10;
+        ">
+          <!-- populate with JS -->
         </div>
         <div class="text-end mt-2">
-          <a href="#" class="btn text-decoration-none more-categories p-3"
+          <a href="productCatalog.html" class="btn text-decoration-none more-categories p-3 text-dark"
             >View All Categories</a
           >
         </div>
@@ -89,78 +84,57 @@
     <!-- =============================== New Arrivals Start ============================================= -->
     <section class="new-arrivals">
       <div class="container">
-        <h2 class="section-title text-center mb-5">New Arrivals</h2>
-        <div class="row" id="new-arrivals-row">
-          <!-- js will populate cards here. -->
+        <h2 class="section-title arrivals-title text-center pb-5 pt-5">New Arrivals</h2>
+        <!-- slider -->
+        <div class="banner">
+          <div class="slider" id="new-arrivals-slider" style="--quantity: 8">
+            <!-- populate with js -->
+          </div>
+          <div class="content d-flex flex-column align-items-center text-center">
+            <div class="model"></div>
+            <div class="">
+              <a href="#" class="btn text-decoration-none more-categories text-light"
+                >View All New Arrivals</a
+              >
+            </div>
+          </div>
         </div>
-        <div class="text-end mt-2">
-          <a href="#" class="btn text-decoration-none more-categories p-3"
-            >View All New Arrivals</a
-          >
-        </div>
+        
       </div>
     </section>
     <!-- =============================== New Arrivals End ============================================= -->
 
     <!-- =============================== Featured Books Start ============================================= -->
-    <section class="featured-books py-5">
+    <section class="best-seller">
       <div class="container">
-        <h2 class="section-title text-center mb-5">Best Sellers</h2>
-        <div class="row" id="featured-books-row">
-          <div class="col-12 col-md-6 col-lg-3 mb-4">
-            <div class="book-card p-3 shadow-sm rounded h-100 text-center">
-              <img src="" alt="book cover" class="book-img img-fluid mb-3" />
-              <h5 class="book-title">The Great Gatsby</h5>
-              <p class="book-author text-muted mb-1">by F. Scott Fitzgerald</p>
-              <p class="book-price fw-semibold mb-2">$12.99</p>
-              <button class="btn btn-sm add-btn">Add to Cart</button>
-            </div>
+        <h2 class="section-title best-title text-center pb-5 pt-5">Best Sellers</h2>
+        <!-- slider -->
+        <div class="banner">
+          <div class="slider" id="best-sellers-slider" style="--quantity: 8">
+            <!-- populate with js -->
           </div>
-          <div class="col-12 col-md-6 col-lg-3 mb-4">
-            <div class="book-card p-3 shadow-sm rounded h-100 text-center">
-              <img src="" alt="book cover" class="book-img img-fluid mb-3" />
-              <h5 class="book-title">The Great Gatsby</h5>
-              <p class="book-author text-muted mb-1">by F. Scott Fitzgerald</p>
-              <p class="book-price fw-semibold mb-2">$12.99</p>
-              <button class="btn btn-sm add-btn">Add to Cart</button>
-            </div>
-          </div>
-          <div class="col-12 col-md-6 col-lg-3 mb-4">
-            <div class="book-card p-3 shadow-sm rounded h-100 text-center">
-              <img src="" alt="book cover" class="book-img img-fluid mb-3" />
-              <h5 class="book-title">The Great Gatsby</h5>
-              <p class="book-author text-muted mb-1">by F. Scott Fitzgerald</p>
-              <p class="book-price fw-semibold mb-2">$12.99</p>
-              <button class="btn btn-sm add-btn">Add to Cart</button>
-            </div>
-          </div>
-          <div class="col-12 col-md-6 col-lg-3 mb-4">
-            <div class="book-card p-3 shadow-sm rounded h-100 text-center">
-              <img src="" alt="book cover" class="book-img img-fluid mb-3" />
-              <h5 class="book-title">The Great Gatsby</h5>
-              <p class="book-author text-muted mb-1">by F. Scott Fitzgerald</p>
-              <p class="book-price fw-semibold mb-2">$12.99</p>
-              <button class="btn btn-sm add-btn">Add to Cart</button>
+          <div class="content d-flex flex-column align-items-center text-center">
+            <div class="model"></div>
+            <div class="">
+              <a href="productCatalog.html" class="btn text-decoration-none more-categories text-light"
+                >View All Best Sellers</a
+              >
             </div>
           </div>
         </div>
-        <div class="text-end mt-2">
-          <a href="#" class="btn text-decoration-none all-books-btn p-3"
-            >View All Books</a
-          >
-        </div>
+        
       </div>
     </section>
     <!-- =============================== Featured Books End ============================================= -->
-
+  
     <!-- =============================== Why Choose Us Start ============================================= -->
     <section class="why-us py-5">
       <div class="container">
-        <h2 id="why-title" class="why-title text-center mb-3">Why BookNest</h2>
+        <h2 id="why-title" class="why-title section-title text-center mb-3">Why BookNest</h2>
         <p class="why-subtitle text-center text-muted mb-5">
           Quality, convenience and service - everything a reader needs.
         </p>
-
+  
         <div class="row" id="why-row">
           <div class="col-12 col-md-6 col-lg-3 mb-4">
             <div class="why-card text-center p-4 h-100 shadow-sm rounded">
@@ -194,7 +168,7 @@
               <a href="#"><i class="fab fa-linkedin-in"></i></a>
             </div>
           </div>
-
+  
           <!-- quick links -->
           <div class="col-12 col-md-6 col-lg-4 text-center text-md-start mb-4">
             <h5 class="mb-3">Quick Links</h5>
@@ -205,7 +179,7 @@
               <li><a href="#" class="text-decoration-none">About</a></li>
             </ul>
           </div>
-
+  
           <!-- contact info -->
           <div class="col-12 col-md-6 col-lg-4 text-center text-md-start mb-4">
             <h5 class="mb-3">Contact</h5>
@@ -214,18 +188,20 @@
             <p>Address: 123 Book Street, Library City</p>
           </div>
         </div>
-
+  
         <!-- bottom bar -->
         <div class="text-center border-top pt-2 pb-1">
           <p class="mb-0">&copy; 2025 BookNest. All rights reserved.</p>
         </div>
       </div>
     </footer>
+  
     <!-- =============================== Footer End ============================================= -->
 
-    <script src="Js/startup/loadBooks.js"></script>
+    
     <script src="Js/bootstrap-5.3.7-dist/js/bootstrap.bundle.js"></script>
     <script src="Js/all.min.js"></script>
+    <script src="Js/startup/loadBooks.js"></script>
     <script type="module" src="Js/booknest.js"></script>
   </body>
 </html>
