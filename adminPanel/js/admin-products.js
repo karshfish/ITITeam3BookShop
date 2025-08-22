@@ -196,17 +196,17 @@ function renderProducts(list) {
 
         const id = product.id;
         const title = product.title;
-        const sellerId = product.sellerId;
-        const sellerName = findById('users', sellerId).name;
-        const price = product.price.toFixed(2);
+        // const sellerId = product?.sellerId;
+        // const sellerName = findById('users', sellerId).name;
+        const price = product.price;
         const status = product.status;
 
         tableRow.dataset.id = id;
 
         tableRow.innerHTML = `
-            <td class="id">${id}</td>
+            <td class="id">${title}</td>
             <td class="title">${title}</td>
-            <td class="seller">${sellerName}</td>
+            
             <td class="price">$${price}</td>
             <td class="status">
                 <span class="badge bg-${statusColor(status)} text-capitalize">${status}</span>
