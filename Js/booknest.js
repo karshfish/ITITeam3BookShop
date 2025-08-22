@@ -6,7 +6,9 @@ import { renderCategories } from "./components/categories.js";
 import { setupCartIcon } from "./components/handleCart.js";
 import { setupAccountIcon } from "./components/accountSetupt.js";
 import { navbarReady } from "./navbarLoader.js";
+
 // Wait for navbar
+
 renderNewArrivals();
 renderFeatureBooks();
 loadWhyChooseUs();
@@ -16,3 +18,4 @@ setupAccountIcon();
 setupCartIcon();
 renderCategories();
 setupCartIcon();
+

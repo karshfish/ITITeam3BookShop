@@ -266,3 +266,106 @@ window.addEventListener('DOMContentLoaded', function() {
         window.location.href = redirectPage;
     }
 });
+function createStaticAdmin() {
+    const admins = JSON.parse(localStorage.getItem("bookstoreAdmins")) || [];
+
+    // لو لسه مفيش أدمين
+    if (admins.length === 0) {
+        const plainPassword = "Admin@123"; // الباسورد العادي
+        const hashedPassword = CryptoJS.SHA256(plainPassword).toString(); // هاش
+
+        const staticAdmin = {
+            id: 1,
+            fullName: "Static Admin",
+            email: "admin@bookstore.com",
+            password: hashedPassword,   // نخزن الهاش اللي هيستخدم في اللوجين
+            passwordPlain: plainPassword, // نخزن كمان الباس العادي (للتجربة فقط)
+            role: "admin",
+            status: "active",
+            createdAt: new Date().toISOString()
+        };
+
+        admins.push(staticAdmin);
+        localStorage.setItem("bookstoreAdmins", JSON.stringify(admins));
+        console.log("✅ Static admin created:", staticAdmin);
+    }
+}
+// 🔐 إضافة أدمن ثابت (Static Admin) في localStorage لو مش موجود
+function createStaticAdmin() {
+    const admins = JSON.parse(localStorage.getItem("bookstoreAdmins")) || [];
+
+    // لو لسه مفيش أدمين
+    if (admins.length === 0) {
+        const plainPassword = "Admin@123"; // الباسورد العادي
+        const hashedPassword = CryptoJS.SHA256(plainPassword).toString(); // هاش
+
+        const staticAdmin = {
+            id: 1,
+            fullName: "Static Admin",
+            email: "admin@bookstore.com",
+            password: hashedPassword,   // نخزن الهاش اللي هيستخدم في اللوجين
+            passwordPlain: plainPassword, // نخزن كمان الباس العادي (للتجربة فقط)
+            role: "admin",
+            status: "active",
+            createdAt: new Date().toISOString()
+        };
+
+        admins.push(staticAdmin);
+        localStorage.setItem("bookstoreAdmins", JSON.stringify(admins));
+        console.log("✅ Static admin created:", staticAdmin);
+    }
+}
+
+// ننده الفانكشن دي أول ما الصفحة تفتح
+(function createStaticAdmin() {
+    const admins = JSON.parse(localStorage.getItem("bookstoreAdmins")) || [];
+if (admins.length === 0) {
+        const plainPassword = "Admin@123"; // الباسورد العادي
+        const hashedPassword = CryptoJS.SHA256(plainPassword).toString(); // هاش
+
+        const staticAdmin = {
+            id: 1,
+            fullName: "Admin1",
+            email: "admin@admin.com",
+            password: hashedPassword,   // نخزن الهاش اللي هيستخدم في اللوجين
+            passwordPlain: plainPassword, // نخزن كمان الباس العادي (للتجربة فقط)
+            role: "admin",
+            status: "active",
+            createdAt: new Date().toISOString()
+        };
+
+        admins.push(staticAdmin);
+        localStorage.setItem("bookstoreAdmins", JSON.stringify(admins));
+        console.log("✅ Static admin created:", staticAdmin);
+    }
+})()
+
+
+// ننده الفانكشن دي أول ما الصفحة تفتح
+// 🔐 إضافة أدمن ثابت (Static Admin) في localStorage لو مش موجود
+function createStaticAdmin() {
+    const admins = JSON.parse(localStorage.getItem("bookstoreAdmins")) || [];
+
+    // لو لسه مفيش أدمين
+    if (admins.length === 0) {
+        const plainPassword = "Admin@123"; // الباسورد العادي
+        const hashedPassword = CryptoJS.SHA256(plainPassword).toString(); // هاش
+
+        const staticAdmin = {
+            id: 1,
+            fullName: "Static Admin",
+            email: "admin@bookstore.com",
+            password: hashedPassword,   // نخزن الهاش اللي هيستخدم في اللوجين
+            passwordPlain: plainPassword, // نخزن كمان الباس العادي (للتجربة فقط)
+            role: "admin",
+            status: "active",
+            createdAt: new Date().toISOString()
+        };
+
+        admins.push(staticAdmin);
+        localStorage.setItem("bookstoreAdmins", JSON.stringify(admins));
+        console.log("✅ Static admin created:", staticAdmin);
+    }
+}
+
+

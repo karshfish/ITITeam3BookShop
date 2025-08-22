@@ -9,17 +9,17 @@ function encryptPassword(password) {
 
 // 2. دوال التحقق من الصحة
 
-function validateEmail(email) {
+export function validateEmail(email) {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return re.test(email);
 }
 
-function validatePassword(password) {
+export function validatePassword(password) {
     const re = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/;
     return re.test(password);
 }
 
-function validateName(name) {
+export function validateName(name) {
     const re = /^[\p{L}\s]{3,}$/u;
     return re.test(name);
 }
@@ -48,6 +48,7 @@ function saveAdmins(admins) {
  * @param {Object} adminData - بيانات الأدمن الجديد
  * @returns {Object} - نتيجة العملية {success, message, admin?}
  */
+
 function addAdmin(adminData) {
     const admins = getAdmins();
     
@@ -96,6 +97,7 @@ function addAdmin(adminData) {
         admin: newAdmin 
     };
 }
+
 
 // 4. دوال واجهة المستخدم
 
