@@ -165,7 +165,7 @@ async function handleLogin() {
         if (foundAdmin) {
             const storage = localStorage;
             storage.setItem("currentUser", JSON.stringify(foundAdmin));
-            window.location.href = "admin_panel.html";
+            window.location.href = "adminPanel/html/noti.html";
             return;
         }
 
@@ -259,7 +259,7 @@ window.addEventListener('DOMContentLoaded', function() {
     if (savedUser) {
         let redirectPage = "#";
         if (savedUser.role === "admin") {
-            redirectPage = "#";
+            redirectPage = "adminPanel/html/noti.html";
         } else if (savedUser.role === "seller") {
             redirectPage = savedUser.status === "pending" ? "pending_approval.html" : "seller_dashboard/seller_dashboard-2.html";
         }

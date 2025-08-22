@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Manage Products</title>
+
+    <!-- Bootstrap CSS & Icons -->
+  <link href="../../Js/bootstrap-5.3.7-dist/css/bootstrap.css" rel="stylesheet">
+  <link href="../../Css/fontAwesom/all.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="../../Js/bootstrap-5.3.7-dist/css/bootstrap.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/admin-products.css">
+</head>
+<body>
+    <!-- Overlay for mobile -->
+    <div class="overlay" id="overlay"></div>
+
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <nav class="sidebar" id="sidebar">
+                <div class="sidebar-header">
+                    <h2>Books Store</h2>
+                    <button class="toggle-sidebar" id="toggleSidebar">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                </div>
+                <ul class="sidebar-menu">
+                    <li><a href="noti.html"><i class="fas fa-tachometer-alt"></i> <span>Dashboard</span></a></li>
+                    <li><a href="add_admin.html"><i class="fas fa-user-tie"></i> <span>Add_admin</span></a></li>
+                    <li><a href="order.html"><i class="fas fa-shopping-cart"></i> <span>Orders</span></a></li>
+                    <li><a href="users.html"><i class="fas fa-users"></i> <span>Users</span></a></li>
+                    <li><a href="noti.html#notifications-sections"><i class="fas fa-bell"></i> <span>Notifications</span></a></li>
+                    <li><a href="products.html" class="active"><i class="fas fa-book"></i> <span>Manage Books</span></a></li>
+                </ul>
+                <div class="sidebar-footer">
+                    <div class="user-profile">
+                        <!-- <img src="https://via.placeholder.com/40x40/3a86ff/ffffff?text=AD" alt="User Image"> -->
+                        <div class="user-info" id="adminName">
+                            <h4></h4>
+                            <span>System Admin</span>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Main Content -->
+            <main class="main-content" id="mainContent">
+                <div class="topbar">
+                    <button class="mobile-toggle" id="mobileToggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h1 class="mb-0">Manage Products</h1>
+                    <div></div> <!-- Empty div for flexbox spacing -->
+                </div>
+
+                <div class="container mt-4">
+                    <!-- filter -->
+                    <div class="filter-section">
+                        <div class="row mb-3 d-flex align-items-center justify-content-center">
+                            <!-- first col => filter -->
+                            <div class="col-md-4 ">
+                                <select id="status-filter" class="form-select">
+                                    <option value="all">All</option>
+                                    <option value="pending">Pending</option>
+                                    <option value="approved">Approved</option>
+                                    <option value="rejected">Rejected</option>
+                                </select>
+                            </div>
+                            <!-- second col => search by title -->
+                            <div class="col-md-4">
+                                <input type="text" id="search-input" class="form-control" placeholder="Search by title...">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- products table -->
+                    <div class="table-responsive">
+                        <table class="table table-hover" id="products-table">
+                            <thead>
+                                <tr>
+                                    <th>Book ID</th>
+                                    <th>Book Title</th>
+                                    <th>Seller</th>
+                                    <th>Book Price</th>
+                                    <th>Book Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="products-body">
+                                <tr>
+                                    <td>BK001</td>
+                                    <td>The Great Gatsby</td>
+                                    <td>John Doe</td>
+                                    <td>$12.99</td>
+                                    <td class="status-pending">Pending</td>
+                                    <td>
+                                        <button class="btn btn-primary btn-sm view-btn" data-bs-toggle="modal" data-bs-target="#book-modal">View</button>
+                                        <button class="btn btn-success btn-sm">Approve</button>
+                                        <button class="btn btn-danger btn-sm">Reject</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>BK002</td>
+                                    <td>To Kill a Mockingbird</td>
+                                    <td>Jane Smith</td>
+                                    <td>$14.50</td>
+                                    <td class="status-approved">Approved</td>
+                                    <td>
+                                        <button class="btn btn-primary btn-sm view-btn" data-bs-toggle="modal" data-bs-target="#book-modal">View</button>
+                                        <button class="btn btn-danger btn-sm">Deactivate</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>BK003</td>
+                                    <td>1984</td>
+                                    <td>Robert Johnson</td>
+                                    <td>$10.99</td>
+                                    <td class="status-rejected">Rejected</td>
+                                    <td>
+                                        <button class="btn btn-primary btn-sm view-btn" data-bs-toggle="modal" data-bs-target="#book-modal">View</button>
+                                        <button class="btn btn-success btn-sm">Approve</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>BK004</td>
+                                    <td>Pride and Prejudice</td>
+                                    <td>Sarah Williams</td>
+                                    <td>$9.99</td>
+                                    <td class="status-approved">Approved</td>
+                                    <td>
+                                        <button class="btn btn-primary btn-sm view-btn" data-bs-toggle="modal" data-bs-target="#book-modal">View</button>
+                                        <button class="btn btn-danger btn-sm">Deactivate</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Book Details Modal -->
+    <div class="modal fade" id="book-modal" tabindex="-1" aria-labelledby="book-modal-label" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="book-modal-label">Book Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <img src="https://via.placeholder.com/250x350/3a86ff/ffffff?text=Book+Cover" class="img-fluid rounded" alt="Book Cover">
+                        </div>
+                        <div class="col-md-8">
+                            <h4>The Great Gatsby</h4>
+                            <p class="text-muted">By F. Scott Fitzgerald</p>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod, nisl eget ultricies ultricies, nunc nisl aliquam nunc, eget aliquam nisl nunc eget nisl.</p>
+                            <div class="row mt-3">
+                                <div class="col-6">
+                                    <p><strong>Price:</strong> $12.99</p>
+                                    <p><strong>Category:</strong> Fiction</p>
+                                </div>
+                                <div class="col-6">
+                                    <p><strong>Seller:</strong> John Doe</p>
+                                    <p><strong>Status:</strong> <span class="status-pending">Pending</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-success">Approve</button>
+                    <button type="button" class="btn btn-danger">Reject</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- sidebar -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const sidebar = document.getElementById('sidebar');
+            const mainContent = document.getElementById('mainContent');
+            const toggleSidebar = document.getElementById('toggleSidebar');
+            const mobileToggle = document.getElementById('mobileToggle');
+            const overlay = document.getElementById('overlay');
+            
+            // Check if sidebar state is saved in localStorage
+            const isSidebarCollapsed = localStorage.getItem('sidebarCollapsed') === 'true';
+            
+            if (isSidebarCollapsed) {
+                collapseSidebar();
+            }
+            
+            // Toggle sidebar on button click
+            toggleSidebar.addEventListener('click', function() {
+                if (sidebar.classList.contains('collapsed')) {
+                    expandSidebar();
+                } else {
+                    collapseSidebar();
+                }
+            });
+            
+            // Toggle sidebar on mobile
+            mobileToggle.addEventListener('click', function() {
+                sidebar.classList.toggle('show');
+                overlay.classList.toggle('active');
+            });
+            
+            // Close sidebar when clicking on overlay
+            overlay.addEventListener('click', function() {
+                sidebar.classList.remove('show');
+                overlay.classList.remove('active');
+            });
+            
+            function collapseSidebar() {
+                sidebar.classList.add('collapsed');
+                mainContent.classList.add('expanded');
+                toggleSidebar.innerHTML = '<i class="fas fa-chevron-right"></i>';
+                localStorage.setItem('sidebarCollapsed', 'true');
+            }
+            
+            function expandSidebar() {
+                sidebar.classList.remove('collapsed');
+                mainContent.classList.remove('expanded');
+                toggleSidebar.innerHTML = '<i class="fas fa-chevron-left"></i>';
+                localStorage.setItem('sidebarCollapsed', 'false');
+            }
+            
+            // Handle window resize
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > 992) {
+                    sidebar.classList.remove('show');
+                    overlay.classList.remove('active');
+                }
+            });
+
+            // Filter functionality
+            const statusFilter = document.getElementById('status-filter');
+            const searchInput = document.getElementById('search-input');
+            const tableRows = document.querySelectorAll('#products-table tbody tr');
+            
+            statusFilter.addEventListener('change', filterTable);
+            searchInput.addEventListener('input', filterTable);
+            
+            function filterTable() {
+                const statusValue = statusFilter.value;
+                const searchValue = searchInput.value.toLowerCase();
+                
+                tableRows.forEach(row => {
+                    const status = row.querySelector('td:nth-child(5)').textContent.toLowerCase();
+                    const title = row.querySelector('td:nth-child(2)').textContent.toLowerCase();
+                    
+                    const statusMatch = statusValue === 'all' || status === statusValue;
+                    const searchMatch = title.includes(searchValue);
+                    
+                    if (statusMatch && searchMatch) {
+                        row.style.display = '';
+                    } else {
+                        row.style.display = 'none';
+                    }
+                });
+            }
+
+            // Add functionality to buttons
+            const approveButtons = document.querySelectorAll('.btn-success');
+            const rejectButtons = document.querySelectorAll('.btn-danger');
+            
+            approveButtons.forEach(button => {
+                if (button.textContent === 'Approve') {
+                    button.addEventListener('click', function() {
+                        const row = this.closest('tr');
+                        const statusCell = row.querySelector('td:nth-child(5)');
+                        statusCell.textContent = 'Approved';
+                        statusCell.className = 'status-approved';
+                        
+                        // Change buttons
+                        const buttons = row.querySelectorAll('td:nth-child(6) button');
+                        buttons[1].textContent = 'Deactivate';
+                    });
+                }
+            });
+            
+            rejectButtons.forEach(button => {
+                if (button.textContent === 'Reject') {
+                    button.addEventListener('click', function() {
+                        const row = this.closest('tr');
+                        const statusCell = row.querySelector('td:nth-child(5)');
+                        statusCell.textContent = 'Rejected';
+                        statusCell.className = 'status-rejected';
+                    });
+                }
+            });
+        });
+    </script>
+        <!-- Bootstrap Bundle JS -->
+    <script src="../../Js/bootstrap-5.3.7-dist/js/bootstrap.bundle.js"></script>
+    <script src="../js/admin-products.js"></script>
+    <script src="../js/get_admin_name.js"></script>
+</body>
+</html>
