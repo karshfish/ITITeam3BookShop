@@ -2,12 +2,14 @@ import { navbarReady } from "./navbarLoader.js";
 import { setupAccountIcon } from "./components/accountSetupt.js";
 import { setupStickyMainNavbar } from "./components/stickyMainNavbar.js";
 import { setupCartIcon } from "./components/handleCart.js";
+import { setupFavIcon } from "./components/handleFav.js";
 
 // Wait for navbar
 await navbarReady;
 setupAccountIcon();
 setupCartIcon();
 setupStickyMainNavbar();
+setupFavIcon();
 
 let params = new URLSearchParams(window.location.search);
 let btitle = params.get('title');
@@ -203,7 +205,7 @@ function showRecommendedBooks(currentBook) {
         relatedHTML += `
             <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 mb-4">
                 <div class="card h-100 recommended-book" data-title="${b.title}">
-                    <img src="${cover}" class="card-img-top img-fluid" alt="${b.title}">
+                    <img src="${cover}" class="card-img-top img-fluid" alt="${b.title} style="height: 250px;">
                     <div class="card-body">
                         <h6 class="text-truncate">${b.title}</h6>
                         <p>by ${b.authors?.map(a => a.name).join(", ") || "Unknown"}</p>

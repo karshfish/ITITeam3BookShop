@@ -13,6 +13,31 @@
     <link rel="stylesheet" href="Css/productDetails/payment.css">
     <link rel="stylesheet" href="Css/navbar/navbar.css">
 </head>
+<style>
+        #done {
+            width: 20px !important;
+            margin: auto !important;
+            width: 30% !important;
+            background-color: #e1dfd6 !important;
+            color: black !important;
+        }
+        #confirm-icon {
+            width: 15px !important;
+            height: 15px !important;
+            border-radius: 50% !important;
+            margin: auto !important;
+            background-color: #e1dfd6 !important;
+            color: black !important;
+                
+        }
+        #myId {
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            justify-content: space-between !important;
+        }
+    </style>
+</head>
 
 <body>
     <!-- <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -195,15 +220,17 @@
                                     <div class="modal fade" id="exampleModalToggle" aria-hidden="true"
                                         aria-labelledby="exampleModalToggleLabel" tabindex="-1">
                                         <div class="modal-dialog modal-dialog-centered">
-                                            <div class="modal-content">
+                                            <div class="modal-content" id="myId">
                                                 <div class="modal-body text-center">
-                                                    <div id="confirm-icon" class="border rounded-full p-3">
+                                                    <!-- circle -->
+                                                    <div id="confirm-icon" class="rounded-circle d-flex align-items-center justify-content-center border p-3" style="width: 15px; height: 15px;"> 
                                                         <i class="fa-solid fa-check"></i>
                                                     </div>
                                                     <h3>Thanks For Your Order!</h3>
                                                     <p>You've made our day-thank you for your support!</p>
                                                 </div>
-                                                <button class="btn modal-btn" data-bs-toggle="modal" id="done">Done</button>
+                                                <!-- small, center -->
+                                                <button class="btn btn-sm modal-btn pb-2" data-bs-toggle="modal" id="done" style="width: 30%;">Done</button>
                                             </div>
                                         </div>
                                     </div>
