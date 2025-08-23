@@ -14,10 +14,6 @@ renderNewArrivals();
 renderFeatureBooks();
 loadWhyChooseUs();
 await navbarReady;
-setupStickyMainNavbar();
-setupAccountIcon();
-setupCartIcon();
-setupFavIcon();
 renderCategories();
 setupCartIcon();
 

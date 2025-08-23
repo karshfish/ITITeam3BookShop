@@ -1,16 +1,9 @@
 import { navbarReady } from "./navbarLoader.js";
-import { setupAccountIcon } from "./components/accountSetupt.js";
-import { setupStickyMainNavbar } from "./components/stickyMainNavbar.js";
-import { setupFavIcon } from "./components/handleFav.js";
-import { setupCartIcon } from "./components/handleCart.js";
+
 
 // Wait for navbar
 await navbarReady;
-setupStickyMainNavbar();
-setupAccountIcon();
-setupCartIcon();
-setupFavIcon();
-// Get query params
+
 const params = new URLSearchParams(window.location.search);
 console.log(params);
 const subject = params.get("catagory") ?? params.get("category");
