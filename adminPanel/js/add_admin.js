@@ -1,3 +1,5 @@
+import { sidebarReady } from "./loaders/sidebarLoader.js";
+await sidebarReady;
 /**
  * تشفير كلمة المرور باستخدام خوارزمية SHA-256
  * @param {string} password - كلمة المرور الأصلية

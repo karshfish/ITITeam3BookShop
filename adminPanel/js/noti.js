@@ -1,36 +1,12 @@
+// Sidebar Load
+import { sidebarReady } from "./loaders/sidebarLoader.js";
 
+await sidebarReady;
 
-// Get admin name from localStorage or sessionStorage
-// const currentAdmin = JSON.parse(localStorage.getItem("currentUser")) ||
-//     JSON.parse(sessionStorage.getItem("currentUser"));
-
-// const adminNameElement = document.getElementById("adminName");
-// if (adminNameElement) {
-//     if (currentAdmin && currentAdmin.role === "admin") {
-//         adminNameElement.innerHTML = `
-//             <h4>${currentAdmin.fullName || "Admin"}</h4>
-//             <span>System Admin</span>
-//         `;
-//     } else {
-//         adminNameElement.innerHTML = `
-//             <h4>Admin not defined</h4>
-//             <span>System Admin</span>
-//         `;
-//     }
-// }
-
-// Sidebar toggle
-function toggleSidebar() {
-    const sidebar = document.querySelector(".sidebar");
-    const mainContent = document.querySelector(".main-content");
-    if (sidebar && mainContent) {
-        sidebar.classList.toggle("collapsed");
-        mainContent.classList.toggle("collapsed");
-    }
-}
+console.log(document.getElementById("sidebarToggle"));
 
 // Page logic
-document.addEventListener("DOMContentLoaded", () => {
+
     // Chart initialization
     const initializeCharts = () => {
         const salesCanvas = document.getElementById("salesChart");
@@ -413,4 +389,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Run initialization
     initializePage();
-});  // ✅ هنا القوس الناقص
+

@@ -15,6 +15,7 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/admin-products.css">
+    <link rel="stylesheet" href="../css/noti.css">
 </head>
 <body>
     <!-- Overlay for mobile -->
@@ -23,31 +24,7 @@
     <div class="container-fluid">
         <div class="row">
             <!-- Sidebar -->
-            <nav class="sidebar" id="sidebar">
-                <div class="sidebar-header">
-                    <h2>Books Store</h2>
-                    <button class="toggle-sidebar" id="toggleSidebar">
-                        <i class="fas fa-chevron-left"></i>
-                    </button>
-                </div>
-                <ul class="sidebar-menu">
-                    <li><a href="noti.html"><i class="fas fa-tachometer-alt"></i> <span>Dashboard</span></a></li>
-                    <li><a href="add_admin.html"><i class="fas fa-user-tie"></i> <span>Add_admin</span></a></li>
-                    <li><a href="order.html"><i class="fas fa-shopping-cart"></i> <span>Orders</span></a></li>
-                    <li><a href="users.html"><i class="fas fa-users"></i> <span>Users</span></a></li>
-                    <li><a href="noti.html#notifications-sections"><i class="fas fa-bell"></i> <span>Notifications</span></a></li>
-                    <li><a href="products.html" class="active"><i class="fas fa-book"></i> <span>Manage Books</span></a></li>
-                </ul>
-                <div class="sidebar-footer">
-                    <div class="user-profile">
-                        <!-- <img src="https://via.placeholder.com/40x40/3a86ff/ffffff?text=AD" alt="User Image"> -->
-                        <div class="user-info" id="adminName">
-                            <h4></h4>
-                            <span>System Admin</span>
-                        </div>
-                    </div>
-                </div>
-            </nav>
+            <nav class="sidebar" id="sidebar"></nav>
 
             <!-- Main Content -->
             <main class="main-content" id="mainContent">
@@ -84,7 +61,7 @@
                         <table class="table table-hover" id="products-table">
                             <thead>
                                 <tr>
-                                    <th>Book ID</th>
+                                    <th>Cover</th>
                                     <th>Book Title</th>
                                     <th>Seller</th>
                                     <th>Book Price</th>
@@ -156,9 +133,9 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col-md-4">
+                        <!-- <div class="col-md-4">
                             <img src="https://via.placeholder.com/250x350/3a86ff/ffffff?text=Book+Cover" class="img-fluid rounded" alt="Book Cover">
-                        </div>
+                        </div> -->
                         <div class="col-md-8">
                             <h4>The Great Gatsby</h4>
                             <p class="text-muted">By F. Scott Fitzgerald</p>
@@ -187,7 +164,7 @@
 
 
 
-    <!-- sidebar -->
+    <!-- sidebar
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const sidebar = document.getElementById('sidebar');
@@ -303,7 +280,7 @@
                 }
             });
         });
-    </script>
+    </script> -->
         <!-- Bootstrap Bundle JS -->
     <script src="../../Js/bootstrap-5.3.7-dist/js/bootstrap.bundle.js"></script>
     <script type="module" src="../js/admin-products.js"></script>

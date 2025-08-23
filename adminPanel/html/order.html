@@ -1,18 +1,21 @@
 <!DOCTYPE html>
 <html lang="ar" dir="ltr">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Product List with Order Details Modal</title>
-  
+
   <!-- Bootstrap CSS & Icons -->
   <link href="../../Js/bootstrap-5.3.7-dist/css/bootstrap.css" rel="stylesheet">
   <link href="../../Css/fontAwesom/all.css" rel="stylesheet">
-  
+
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="../css/order.css">
+  <link rel="stylesheet" href="../css/noti.css">
 </head>
+
 <body>
   <!-- Overlay for mobile -->
   <div class="overlay" id="overlay"></div>
@@ -21,54 +24,7 @@
     <div class="row">
       <!-- Sidebar -->
       <nav class="sidebar" id="sidebar">
-        <div class="sidebar-header">
-          <h5 class="mb-0 text-primary fw-bold">Books Store</h5>
-          <button class="toggle-sidebar" id="toggleSidebar">
-            <i class="fas fa-chevron-left"></i>
-          </button>
-        </div>
-        <ul class="nav flex-column sidebar-menu">
-          <li class="nav-item">
-            <a class="nav-link active" href="noti.html">
-              <i class="fas fa-tachometer-alt"></i>
-              <span>Dashboard</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="add_admin.html">
-              <i class="fas fa-user-tie"></i>
-              <span>Add Admin</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="users.html">
-              <i class="fas fa-users"></i>
-              <span>Users</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="noti.html#notifications-sections">
-              <i class="fas fa-bell"></i>
-              <span>Notifications</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="products.html">
-              <i class="fas fa-book"></i>
-              <span>Mange Books</span>
-            </a>
-          </li>
-        </ul>
 
-        <div class="sidebar-footer">
-            <div class="user-profile">
-                <!-- <img src="https://via.placeholder.com/40x40/3a86ff/ffffff?text=AD" alt="User Image"> -->
-                <div class="user-info" id="adminName">
-                    <!-- <h4></h4> -->
-                    <span>System Admin</span>
-                </div>
-            </div>
-        </div>
       </nav>
 
       <!-- Main Content -->
@@ -84,7 +40,7 @@
           <table class="table align-middle table-hover orders-table">
             <thead>
               <tr>
-                <th scope="col">Order Id</th>
+                <th scope="col">cover</th>
                 <th scope="col">Book Name</th>
                 <th scope="col">Customer Name</th>
                 <th scope="col">Date Of Order</th>
@@ -94,7 +50,7 @@
               </tr>
             </thead>
             <tbody id="table-info">
-              
+
             </tbody>
           </table>
         </div>
@@ -103,7 +59,8 @@
   </div>
 
   <!-- Order Details Modal -->
-  <div class="modal fade" id="orderDetailsModal" tabindex="-1" aria-labelledby="orderDetailsModalLabel" aria-hidden="true">
+  <div class="modal fade" id="orderDetailsModal" tabindex="-1" aria-labelledby="orderDetailsModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered">
       <div class="modal-content rounded-4 shadow-sm">
         <div class="modal-header border-0">
@@ -118,67 +75,61 @@
   <!-- Bootstrap Bundle JS -->
   <script src="../../Js/bootstrap-5.3.7-dist/js/bootstrap.bundle.js"></script>
   <script src="../js/get_admin_name.js"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
+  <!-- <script>
+    document.addEventListener('DOMContentLoaded', function () {
       const sidebar = document.getElementById('sidebar');
       const mainContent = document.getElementById('mainContent');
       const toggleSidebar = document.getElementById('toggleSidebar');
       const mobileToggle = document.getElementById('mobileToggle');
       const overlay = document.getElementById('overlay');
-      
+
       // Check if sidebar state is saved in localStorage
       const isSidebarCollapsed = localStorage.getItem('sidebarCollapsed') === 'true';
-      
+
       if (isSidebarCollapsed) {
         collapseSidebar();
       }
-      
+
       // Toggle sidebar on button click
-      toggleSidebar.addEventListener('click', function() {
-        if (sidebar.classList.contains('collapsed')) {
-          expandSidebar();
-        } else {
-          collapseSidebar();
-        }
-      });
-      
+
       // Toggle sidebar on mobile
-      mobileToggle.addEventListener('click', function() {
+      mobileToggle.addEventListener('click', function () {
         sidebar.classList.toggle('show');
         overlay.classList.toggle('active');
       });
-      
+
       // Close sidebar when clicking on overlay
-      overlay.addEventListener('click', function() {
+      overlay.addEventListener('click', function () {
         sidebar.classList.remove('show');
         overlay.classList.remove('active');
       });
-      
+
       function collapseSidebar() {
         sidebar.classList.add('collapsed');
         mainContent.classList.add('expanded');
         toggleSidebar.innerHTML = '<i class="fas fa-chevron-right"></i>';
         localStorage.setItem('sidebarCollapsed', 'true');
       }
-      
+
       function expandSidebar() {
         sidebar.classList.remove('collapsed');
         mainContent.classList.remove('expanded');
         toggleSidebar.innerHTML = '<i class="fas fa-chevron-left"></i>';
         localStorage.setItem('sidebarCollapsed', 'false');
       }
-      
+
       // Handle window resize
-      window.addEventListener('resize', function() {
+      window.addEventListener('resize', function () {
         if (window.innerWidth > 992) {
           sidebar.classList.remove('show');
           overlay.classList.remove('active');
         }
       });
     });
-  </script>
-  
-  <script src="../js/order.js"></script>
+  </script> -->
+
+  <script type="module" src="../js/order.js"></script>
   <script src="../js/order-details.js"></script>
 </body>
+
 </html>

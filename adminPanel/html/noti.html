@@ -15,31 +15,7 @@
 
 <body>
     <!-- ================ Sidebar (unchanged structure/classes) ================ -->
-    <div class="sidebar">
-        <button class="toggle-btn" onclick="toggleSidebar()">
-            <i class="fas fa-bars"></i>
-        </button>
-        <div class="sidebar-header">
-            <!-- <img src="https://via.placeholder.com/40x40/4361ee/ffffff?text=BS" alt="Store Logo"> -->
-            <h2>Book Store</h2>
-        </div>
-        <ul class="sidebar-menu">
-            <li><a href="noti.html" class="active"><i class="fas fa-tachometer-alt"></i> <span>Dashboard</span></a></li>
-            <li><a href="add_admin.html"><i class="fas fa-user-tie"></i> <span>Add_admin</span></a></li>
-            <li><a href="order.html"><i class="fas fa-shopping-cart"></i> <span>Orders</span></a></li>
-            <li><a href="users.html"><i class="fas fa-users"></i> <span>Users</span></a></li>
-            <li><a href="products.html"><i class="fas fa-book"></i> <span>Manage Books</span></a></li>
-        </ul>
-        <div class="sidebar-footer">
-            <div class="user-profile">
-                <!-- <img src="https://via.placeholder.com/40x40/3a86ff/ffffff?text=AD" alt="User Image"> -->
-                <div class="user-info" id="adminName">
-                    <h4></h4>
-                    <span>System Admin</span>
-                </div>
-            </div>
-        </div>
-    </div>
+    <div class="sidebar" id="sidebar"></div>
 
     <!-- ============================ Main content ============================ -->
     <div class="main-content">
@@ -139,7 +115,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="../../Js/bootstrap-5.3.7-dist/js/bootstrap.bundle.js"></script>
     <script src="../js/get_admin_name.js"></script>
-    <script src="../js/noti.js"></script>
+    <script type="module" src="../js/noti.js"></script>
 
 
 </body>

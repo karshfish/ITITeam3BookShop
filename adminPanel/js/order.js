@@ -1,3 +1,5 @@
+import { sidebarReady } from "./loaders/sidebarLoader.js";
+await sidebarReady
 let orderinfo = JSON.parse(localStorage.getItem('order')) || [];
 console.log(orderinfo)
 let tableInfo = document.getElementById('table-info');

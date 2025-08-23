@@ -1,3 +1,5 @@
+import { sidebarReady } from "./loaders/sidebarLoader.js";
+await sidebarReady;
 // Load users from localStorage
 function getUsers() {
   const users = JSON.parse(localStorage.getItem('bookstoreUsers')) || [];
