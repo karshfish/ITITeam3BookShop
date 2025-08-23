@@ -35,7 +35,7 @@
     }
 
     /* Sidebar */
-    .sidebar {
+    /* .sidebar {
       width: var(--sidebar-width);
       background-color: white;
       min-height: 100vh;
@@ -145,7 +145,7 @@
 
     .sidebar.collapsed .sidebar-footer {
         display: none;
-    }
+    } */
 
     /* Main Content */
     .main-content {

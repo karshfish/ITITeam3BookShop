@@ -30,6 +30,9 @@ body {
     min-height: 100vh;
     overflow-x: hidden;
 }
+.toggle-btn{
+    transform: rotate(-90deg);
+}
 
 .sidebar {
     width: var(--sidebar-width);
@@ -55,6 +58,9 @@ body {
     display: flex;
     align-items: center;
     gap: 15px;
+}
+.sidebar-header.collapsed {
+    display: none; /* or adjust width, padding, etc. */
 }
 
 .logo-placeholder {

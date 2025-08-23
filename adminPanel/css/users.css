@@ -34,7 +34,7 @@
       padding: 0;
     }
 
-    /* Sidebar */
+    /* Sidebar
     .sidebar {
       width: var(--sidebar-width);
       background-color: white;
@@ -145,7 +145,7 @@
 
     .sidebar.collapsed .sidebar-footer {
         display: none;
-    }
+    } */
 
     /* Main Content */
     .main-content {
