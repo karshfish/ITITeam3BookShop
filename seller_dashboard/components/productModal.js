@@ -56,7 +56,7 @@ function getVal(id) {
 function onSubmit(e) {
     e.preventDefault();
 
-    const current = (JSON.parse(localStorage.getItem('currentUser') || []))[0];
+    const current = JSON.parse(localStorage.getItem('currentUser') || "null");
 
     const id = getVal('prod-id');
     const existing = findById('products', id); // the product to be edited
@@ -71,10 +71,11 @@ function onSubmit(e) {
         image: getVal('prod-image').trim(), 
         description: getVal('prod-desc').trim(), 
         visible: document.getElementById('prod-visible').checked, 
-        status: 'pending', 
+        active: 1, 
         createdAt: existing?.createdAt || new Date().toISOString()
     };
 
+    console.log('saving product', updated);
     saveOrUpdate('products', updated);
     hideProductModal();
     renderProducts();

@@ -2,7 +2,7 @@ import {read, write, findById, saveOrUpdate, removeById} from './storage.js';
 
 export function renderProducts() {
     const current = JSON.parse(localStorage.getItem('currentUser') || '');
-    console.log('current user data: ', current);
+    // console.log('current user data: ', current);
     // if(!current || current.role !== 'seller') return location.href = '../../index.html';
     
 
@@ -33,7 +33,7 @@ export function renderProducts() {
     products.forEach(p => {
         html += `
         <tr data-id="${p.id}">
-            <td><img src="${p.covers.small}" style="height:60px; width:42px" /></td>
+            <td><img src="${p.image}" style="height:60px; width:42px" /></td>
             <td>${p.title} <br> <small>${p.author || ''}</small></td>
             <td>$${p.price}</td>
             <td>${p.stock}</td>

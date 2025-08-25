@@ -19,8 +19,14 @@ function showProductDetails() {
 
     if (event.target.closest("button")) return;
 
-    // const productId = row.dataset.id;
-    // const product = findById('products', productId);
+    console.log(row);
+    const productId = row.dataset.id;
+    const product = findById("products", productId);
+
+    let seller = null;
+    if (product?.sellerId) {
+      seller = findById("bookstoreUsers", product.sellerId);
+    }
     // const seller = findById('users', product.sellerId);
 
     const modalEl = document.getElementById("book-modal");
@@ -44,12 +50,13 @@ function showProductDetails() {
 }
 
 function populateBody(modal, modalBody, product, seller) {
-  const cover = "../images/book1.jpg";
-  const title = "cloud mountain";
-  const author = "George MacDonald";
-  const price = "$10";
-  const description =
-    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia sed, deserunt qui ad error natus velit praesentium dolorem accusantium expedita laborum alias ab est excepturi molestiae sit sequi autem. Expedita!";
+  const cover = product?.covers?.small || product?.image;
+  const title = product?.title || "Untitled";
+  const author =
+    product?.author || (product?.authors?.[0]?.name ?? "Unknown Author");
+  const price = product?.price || "N/A";
+  const description = product?.description || "No description available.";
+  const sellerName = seller?.fullName || "admin";
 
   modalBody.innerHTML = `
     <div class="d-flex flex-column flex-md-row align-items-center">
@@ -63,11 +70,19 @@ function populateBody(modal, modalBody, product, seller) {
         <h5 class="fw-bold mb-2">${title}</h5>
         <p class="mb-1"><strong>Author:</strong> ${author}</p>
         <p class="mb-1"><strong>Description:</strong> ${description}</p>
-        <p class="mb-1"><strong>Price:</strong> ${price}</p>
-        <p class="mb-1"><strong>Seller:</strong> ${seller.name}</p>
-        <p class="mb-1"><strong>Status:</strong> <span class="badge bg-${statusColor(
-          product.status
-        )}">${product.status}</span></p>
+        <p class="mb-1"><strong>Price:</strong> $${price}</p>
+        <p class="mb-1"><strong>Seller:</strong> ${sellerName}</p>
+        <p class="mb-1"><strong>Status:</strong> 
+        <span class="badge bg-${statusColor(product.active)}">
+        ${
+          product.active === 2
+            ? "approved"
+            : product.active === 1
+            ? "pending"
+            : "rejected"
+        }
+      </span>
+        </p>
     </div>
 </div>
 
@@ -75,13 +90,13 @@ function populateBody(modal, modalBody, product, seller) {
 }
 
 function populateFooter(modal, footer, product) {
-  if (product.status === "pending") {
+  if (product.active === 1) {
     const approveBtn = createButton(
       "Approve",
       "btn btn-success btn-sm approve-btn"
     );
     approveBtn.addEventListener("click", function () {
-      changeStatus(product.id, "approved");
+      changeStatus(product.id, 2);
       modal.hide();
     });
     footer.appendChild(approveBtn);
@@ -91,7 +106,7 @@ function populateFooter(modal, footer, product) {
       "btn btn-warning btn-sm reject-btn"
     );
     rejectBtn.addEventListener("click", function () {
-      changeStatus(product.id, "rejected");
+      changeStatus(product.id, 0);
       modal.hide();
     });
     footer.appendChild(rejectBtn);
@@ -128,12 +143,12 @@ function applyTableActions() {
     if (!row) return;
 
     const productId = row.dataset.id;
-    // console.log(productId);
+    console.log(productId);
 
     if (target.classList.contains("approve-btn")) {
-      changeStatus(productId, "approved");
+      changeStatus(productId, 2);
     } else if (target.classList.contains("reject-btn")) {
-      changeStatus(productId, "rejected");
+      changeStatus(productId, 0);
     } else if (target.classList.contains("delete-btn")) {
       deleteProduct(productId);
     }
@@ -164,7 +179,7 @@ function changeStatus(id, newStatus) {
   let products = read("products");
   const index = products.findIndex((p) => p.id === id);
   if (index !== -1) {
-    products[index].status = newStatus;
+    products[index].active = newStatus;
   }
   write("products", products);
   filterProducts();
@@ -192,11 +207,11 @@ function filterProducts() {
 
 function statusColor(st) {
   switch (st) {
-    case "pending":
+    case 1:
       return "secondary";
-    case "approved":
+    case 2:
       return "success";
-    case "rejected":
+    case 0:
       return "danger";
     default:
       return "light";
@@ -206,13 +221,13 @@ function statusColor(st) {
 function renderProducts(list) {
   const tbody = document.getElementById("products-body");
   tbody.innerHTML = "";
-
+  // console.log(list[list.length-1])
   list.forEach((product) => {
     const tableRow = document.createElement("tr");
     const id = product.id;
     const title = product.title;
-    const cover = product.covers.small;
-    // const sellerId = product?.sellerId;
+    const cover = product?.covers?.medium || product?.image;
+    const sellerId = product?.sellerId;
     let sellerName;
     const price = product.price;
     const status = product.active;
@@ -220,15 +235,21 @@ function renderProducts(list) {
     tableRow.dataset.id = id;
 
     tableRow.innerHTML = `
-    <td class="cover"><img src="${cover}" alt="cover of ${title}"></td>
+    <td class="cover"><img src="${cover}" alt="cover of ${title}" width=100px></td>
     <td class="title">${title}</td>
     <td class="seller">${sellerName ? sellerName : "admin"}</td>
     <td class="price">$${price}</td>
-    <td class="status">${product.active == 2 ? "active" : pending}</td>
+    <td class="status">${
+      product.active === 2
+        ? "approved"
+        : product.active === 1
+        ? "pending"
+        : "rejected"
+    }</td>
     <td class="action">
         <div class="d-flex align-items-center justify-content-around flex-sm-wrap">
             ${
-              status === "pending"
+              product.active === 1
                 ? `
                 <button class="btn btn-sm btn-success me-1 approve-btn">Approve</button>
                 <button class="btn btn-sm btn-warning me-1 reject-btn">Reject</button>
@@ -245,7 +266,23 @@ function renderProducts(list) {
 }
 
 function loadProducts() {
-  const products = JSON.parse(localStorage.getItem("products") || []);
+  let products = JSON.parse(localStorage.getItem("products") || "[]");
+
+  // Normalize: if no id, use work key or generate one
+  products = products.map((p) => {
+    if (!p.id) {
+      p.id =
+        p.keys?.work ||
+        p.keys?.edition ||
+        "prod_" + Math.random().toString(36).slice(2, 9);
+    }
+    return p;
+  });
+
+  localStorage.setItem("products", JSON.stringify(products));
   renderProducts(products);
-  // filterProducts();
+
+  // const products = JSON.parse(localStorage.getItem("products") || []);
+  // renderProducts(products);
+  filterProducts();
 }
