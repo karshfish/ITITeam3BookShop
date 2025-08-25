@@ -1,6 +1,7 @@
 import { setupCartIcon } from "./components/handleCart.js";
 import { setupAccountIcon } from "./components/accountSetupt.js";
 import { setupStickyMainNavbar } from "./components/stickyMainNavbar.js";
+import { renderCategories } from "./components/categories.js";
 import { setupFavIcon } from "./components/handleFav.js";
 // navbarLoader.js
 export async function loadHTML(url, containerSelector) {
@@ -16,6 +17,7 @@ export async function loadHTML(url, containerSelector) {
   setupStickyMainNavbar();
   setupAccountIcon();
   setupFavIcon();
+  renderCategories();
   // Resolve after the DOM is actually updated
   return container;
 }
