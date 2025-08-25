@@ -7,11 +7,10 @@ import { addProduct } from "./components/addProduct.js";
 import { sellerAvatar } from "./components/sellerAvatar.js";
 import { sidebarReady } from "./components/sidebarLoader/sidebar-loader.js";
 await sidebarReady;
-window.addEventListener("DOMContentLoaded", function () {
-  initProductModal();
-  renderProducts();
-  editProduct();
-  deleteProduct();
-  addProduct();
-  sellerAvatar();
-});
+
+initProductModal();
+renderProducts();
+editProduct();
+deleteProduct();
+addProduct();
+sellerAvatar();
