@@ -1,6 +1,5 @@
 import { navbarReady } from "./navbarLoader.js";
 
-
 // Wait for navbar
 await navbarReady;
 
@@ -29,9 +28,10 @@ function getProducts() {
   const products = productsJson();
   for (const product of products) {
     try {
-      if(product.active==2){
-      const coverSrc = getCover(product);
-      addCard(product, coverSrc);}
+      if (product.active == 2) {
+        const coverSrc = getCover(product);
+        addCard(product, coverSrc);
+      }
     } catch (e) {
       console.error("Error with product:", product, e);
     }
@@ -41,7 +41,7 @@ getProducts();
 
 // Helpers
 function getCover(product) {
-  return product.covers?.large ?? "assets/placeholder.png";
+  return product.covers?.large ?? product.image;
 }
 
 function addCard(product, src) {
@@ -61,8 +61,8 @@ function addCard(product, src) {
   const cardBody = document.createElement("div");
   cardBody.className = "card-body";
   cardBody.innerHTML = `
-    <p>Author: ${product.authors?.[0]?.name ?? "Unknown"}</p>
-    <p>Title: ${product.title}</p>
+    <p>Author: ${product.authors?.[0]?.name ?? product.author}</p>
+    <p>Title: ${product?.title}</p>
     <p>Price: ${product.price}$</p>
   `;
 
@@ -71,7 +71,8 @@ function addCard(product, src) {
   });
 
   const cardFooter = document.createElement("div");
-  cardFooter.className = "card-footer d-flex flex-row justify-content-center align-items-center";
+  cardFooter.className =
+    "card-footer d-flex flex-row justify-content-center align-items-center";
 
   const addToCart = document.createElement("button");
   addToCart.className = "btn";

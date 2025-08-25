@@ -5,12 +5,13 @@ import { deleteProduct } from "./components/deleteProduct.js";
 import { initProductModal } from "./components/productModal.js";
 import { addProduct } from "./components/addProduct.js";
 import { sellerAvatar } from "./components/sellerAvatar.js";
-
-window.addEventListener('DOMContentLoaded', function() {
-    initProductModal();
-    renderProducts();
-    editProduct();
-    deleteProduct();
-    addProduct();
-    sellerAvatar();
+import { sidebarReady } from "./components/sidebarLoader/sidebar-loader.js";
+await sidebarReady;
+window.addEventListener("DOMContentLoaded", function () {
+  initProductModal();
+  renderProducts();
+  editProduct();
+  deleteProduct();
+  addProduct();
+  sellerAvatar();
 });

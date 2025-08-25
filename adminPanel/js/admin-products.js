@@ -227,8 +227,14 @@ function renderProducts(list) {
     const id = product.id;
     const title = product.title;
     const cover = product?.covers?.medium || product?.image;
-    const sellerId = product?.sellerId;
     let sellerName;
+    const sellerId = product?.sellerId;
+    if (!sellerId) {
+      sellerName = "Admin";
+    } else {
+      sellerName = findById("bookstoreUsers", sellerId)?.fullName;
+    }
+
     const price = product.price;
     const status = product.active;
 
@@ -237,7 +243,7 @@ function renderProducts(list) {
     tableRow.innerHTML = `
     <td class="cover"><img src="${cover}" alt="cover of ${title}" width=100px></td>
     <td class="title">${title}</td>
-    <td class="seller">${sellerName ? sellerName : "admin"}</td>
+    <td class="seller">${sellerName}</td>
     <td class="price">$${price}</td>
     <td class="status">${
       product.active === 2
