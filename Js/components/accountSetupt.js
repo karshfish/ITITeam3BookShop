@@ -32,6 +32,7 @@ export function setupAccountIcon() {
     logoutItem.className = "dropdown-item";
     logoutItem.textContent = "Logout";
     logoutItem.addEventListener("click", () => {
+      localStorage.removeItem("fav");
       localStorage.removeItem("cart");
       localStorage.removeItem("currentUser");
       window.location.href = "home.html";
