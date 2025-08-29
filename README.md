@@ -36,7 +36,7 @@ LICENSE # MIT license
 ## 🖼️ Screenshots
 
 ### Homepage
-![Homepage](Assets/screenshots/homepage.png)
+![Homepage](Assets/screenshots/home.png)
 
 ### Book Catalog
 ![Catalog](Assets/screenshots/catalog.png)
