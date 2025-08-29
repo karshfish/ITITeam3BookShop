@@ -17,7 +17,7 @@ export function renderProducts() {
     }
 
     let html = `
-        <table class="table table-striped">
+        <table class="table table-responsive table-striped">
             <thead>
                 <tr>
                     <th>Book</th>
@@ -33,13 +33,13 @@ export function renderProducts() {
     products.forEach(p => {
         html += `
         <tr data-id="${p.id}">
-            <td><img src="${p.image}" style="height:60px; width:42px" /></td>
-            <td>${p.title} <br> <small>${p.author || ''}</small></td>
-            <td>$${p.price}</td>
-            <td>${p.stock}</td>
-            <td>
-                <button class="btn btn-sm btn-secondary edit-btn">Edit</button>
-                <button class="btn btn-sm btn-danger delete-btn">Delete</button>
+            <td style="vertical-align:middle;"><img src="${p.covers.large}" style="width:50px; border:0.5px solid black; border-radius:2px;"/></td>
+            <td  style="vertical-align:middle;">${p.title} <br> <small>${p.authors[0].name || ''}</small></td>
+            <td  style="vertical-align:middle;">$${p.price}</td>
+            <td  style="vertical-align:middle;">${p.stock}</td>
+            <td  style="vertical-align:middle;">
+                <button class="btn btn-sm btn-secondary edit-btn shadow-sm border-dark">Edit</button>
+                <button class="btn btn-sm btn-danger delete-btn shadow-sm border-dark">Delete</button>
             </td>
         </tr>
         `;

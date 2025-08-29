@@ -1,5 +1,6 @@
 import { saveOrUpdate, findById } from "./storage.js";
 import { renderProducts } from "./renderCurrentSellerProducts.js";
+import { generateUniqueId } from "./uniqueIdGenerator.js";
 
 let bsModal = null;
 
@@ -23,10 +24,10 @@ export function populateProductModal(product) {
     // set fields.
     setVal('prod-id', product.id);
     setVal('prod-title', product.title);
-    setVal('prod-author', product.author || '');
+    setVal('prod-author', product.authors[0].name || '');
     setVal('prod-price', product.price ?? 0);
     setVal('prod-stock', product.stock ?? 0);
-    setVal('prod-image', product.image || '');  // url
+    setVal('prod-image', product.covers.small || '');  // url
     setVal('prod-desc', product.description || '');
     document.getElementById('prod-visible').checked = !!product.visible;
 
@@ -65,10 +66,19 @@ function onSubmit(e) {
         id, 
         sellerId: existing?.sellerId || current?.id,
         title: getVal('prod-title').trim(),
-        author: getVal('prod-author').trim(), 
+        authors: [
+            {
+                key: generateUniqueId('author'),
+                name: getVal('prod-author').trim()
+            }
+        ], 
         price: parseFloat(getVal('prod-price')) || 0, 
         stock: parseInt(getVal('prod-stock')) || 0, 
-        image: getVal('prod-image').trim(), 
+        covers: {
+            large: getVal('prod-image').trim(), 
+            medium: getVal('prod-image').trim(), 
+            small: getVal('prod-image').trim()
+        }, 
         description: getVal('prod-desc').trim(), 
         visible: document.getElementById('prod-visible').checked, 
         active: 1, 

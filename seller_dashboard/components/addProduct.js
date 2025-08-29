@@ -10,11 +10,20 @@ export function addProduct() {
             id: generateUniqueId(),
             sellerId: '',
             title: '',
-            author: '',
+            authors: [
+                {
+                    key: '', 
+                    name: ''
+                }
+            ],
             price: 0,
             stock: 0,
             category: '',
-            image: '',
+            covers: {
+                large: '', 
+                medium: '', 
+                small: ''
+            },
             description: '',
             visible: true,
             active: 1, 

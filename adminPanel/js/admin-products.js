@@ -194,7 +194,8 @@ function filterProducts() {
   let products = read("products"); // => [{}, {}, ...]
 
   if (filter !== "all") {
-    products = products.filter((p) => p.status === filter);
+    console.log(Number(filter));
+    products = products.filter((p) => p.active === Number(filter));
   }
   if (searchedTitle) {
     products = products.filter((p) =>
@@ -229,40 +230,43 @@ function renderProducts(list) {
     const cover = product?.covers?.medium || product?.image;
     let sellerName;
     const sellerId = product?.sellerId;
+    
     if (!sellerId) {
       sellerName = "Admin";
     } else {
-      sellerName = findById("bookstoreUsers", sellerId)?.fullName;
+      
+      sellerName = findById("bookstoreAdmins", sellerId)?.fullName;
     }
 
     const price = product.price;
     const status = product.active;
+    
 
     tableRow.dataset.id = id;
 
     tableRow.innerHTML = `
-    <td class="cover"><img src="${cover}" alt="cover of ${title}" width=100px></td>
+    <td class="cover"><img src="${cover}" alt="cover of ${title}" style="width:50px; border:0.5px solid black; border-radius:2px;"></td>
     <td class="title">${title}</td>
     <td class="seller">${sellerName}</td>
     <td class="price">$${price}</td>
-    <td class="status">${
+    <td class="status><span class="badge bg-${statusColor(status)}">${
       product.active === 2
         ? "approved"
         : product.active === 1
         ? "pending"
         : "rejected"
-    }</td>
+    }</span></td>
     <td class="action">
         <div class="d-flex align-items-center justify-content-around flex-sm-wrap">
             ${
               product.active === 1
                 ? `
-                <button class="btn btn-sm btn-success me-1 approve-btn">Approve</button>
-                <button class="btn btn-sm btn-warning me-1 reject-btn">Reject</button>
+                <button class="btn btn-sm btn-success shadow-sm me-1 border-dark approve-btn" style="font-size: 0.5rem">Approve</button>
+                <button class="btn btn-sm btn-warning shadow-sm me-1 border-dark reject-btn" style="font-size: 0.5rem">Reject</button>
             `
                 : ""
             }
-            <button class="btn btn-sm btn-danger delete-btn">Delete</button>
+            <button class="btn btn-sm btn-danger shadow-sm border-dark delete-btn" style="font-size: 0.5rem">Delete</button>
         </div>
     </td>
 `;
