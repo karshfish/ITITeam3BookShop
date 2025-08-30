@@ -1,4 +1,5 @@
 # ITITeam3BookShop
+
 ## Overview  
 ITITeam3BookShop is a responsive, client-side-only web application that allows browsing and purchasing books. Developed by Team 3 at ITI to demonstrate front-end skills using HTML, CSS, JavaScript, and Bootstrap.
 
@@ -8,6 +9,7 @@ ITITeam3BookShop is a responsive, client-side-only web application that allows b
 - Dynamic book catalog generated from JSON data
 - Basic client-side login/logout, cart, and favorites functionality
 - Admin and seller dashboards for managing content
+
 ## Project Structure
 .vscode/ # Editor settings
 Assets/ # Media assets (images/icons)
@@ -34,7 +36,7 @@ LICENSE # MIT license
 ## 🖼️ Screenshots
 
 ### Homepage
-![Homepage](Assets/screenshots/home.png)
+![Homepage](Assets/screenshots/homepage.png)
 
 ### Book Catalog
 ![Catalog](Assets/screenshots/catalog.png)
