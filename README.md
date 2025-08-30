@@ -1,5 +1,5 @@
 # ITITeam3BookShop
-
+From mint vr machine
 ## Overview  
 ITITeam3BookShop is a responsive, client-side-only web application that allows browsing and purchasing books. Developed by Team 3 at ITI to demonstrate front-end skills using HTML, CSS, JavaScript, and Bootstrap.
 
